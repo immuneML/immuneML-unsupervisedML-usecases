@@ -1,0 +1,55 @@
+definitions:
+  datasets:
+    dataset:
+      format: Generic
+      params:
+        path: IEDB_export_GLCTLVAML_human_TCR_filtered.tsv
+        is_repertoire: false
+        paired: false
+        separator: "\t"
+        region_type: IMGT_CDR3
+        import_illegal_characters: False
+        import_empty_aa_sequences: False
+        column_mapping:
+          Chain 2 - CDR3 Curated: junction_aa
+          Chain 2 - Curated V Gene: v_gene
+          Chain 2 - Curated J Gene: j_gene
+        columns_to_load:
+          - Chain 2 - CDR3 Curated
+          - Chain 2 - Curated V Gene
+          - Chain 2 - Curated J Gene
+  ml_methods:
+    pwm_model:
+      PWM:
+        locus: beta
+        sequence_type: amino_acid
+        region_type: IMGT_CDR3
+    LSTM_model:
+      SimpleLSTM:
+        locus: beta
+        sequence_type: amino_acid
+        num_epochs: 500
+        hidden_size: 50
+        learning_rate: 0.001
+        batch_size: 100
+        embed_size: 100
+        temperature: 0.4
+        num_layers: 6
+        device: cpu
+        region_type: IMGT_CDR3
+
+instructions:
+  gen_model_PWM:
+    type: TrainGenModel
+    export_combined_dataset: True
+    dataset: dataset
+    method: pwm_model
+    gen_examples_count: 7500
+    number_of_processes: 4
+  gen_model_LSTM:
+    type: TrainGenModel
+    export_combined_dataset: True
+    dataset: dataset
+    method: LSTM_model
+    gen_examples_count: 7500
+    number_of_processes: 4

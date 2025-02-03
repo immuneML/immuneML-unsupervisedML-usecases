@@ -1,0 +1,76 @@
+definitions:
+  datasets:
+    PWM_dataset:
+      format: AIRR
+      params:
+        path: 01_train_output/gen_model_PWM/exported_combined_dataset/combined_gen_model_PWM_dataset.tsv
+        is_repertoire: False
+        paired: False
+        region_type: IMGT_CDR3
+        separator: "\t"
+    LSTM_dataset:
+      format: AIRR
+      params:
+        path: 01_train_output/gen_model_LSTM/exported_combined_dataset/combined_gen_model_LSTM_dataset.tsv
+        is_repertoire: False
+        paired: False
+        region_type: IMGT_CDR3
+        separator: "\t"
+  encodings:
+    kmer_freq_encoding:
+      KmerFrequency:
+        k: 3
+        sequence_type: amino_acid
+  reports:
+    aa_freq:
+      AminoAcidFrequencyDistribution:
+        region_type: IMGT_CDR3
+        split_by_label: True
+        label: from_gen_model
+    seq_len:
+      SequenceLengthDistribution:
+        sequence_type: amino_acid
+        region_type: IMGT_CDR3
+    feature_distribution:
+      FeatureDistribution:
+        color_grouping_label: from_gen_model
+    feature_comparison:
+      FeatureComparison:
+        comparison_label: from_gen_model
+        show_error_bar: False
+        log_scale: True
+        keep_fraction: 0.4
+
+instructions:
+  data_reports:
+    type: ExploratoryAnalysis
+    analyses:
+      PWM_aa_freq:
+        dataset: PWM_dataset
+        report: aa_freq
+      PWM_seq_len:
+        dataset: PWM_dataset
+        report: seq_len
+      PWM_feature_distribution:
+        dataset: PWM_dataset
+        encoding: kmer_freq_encoding
+        report: feature_distribution
+      PWM_feature_comparison:
+        dataset: PWM_dataset
+        encoding: kmer_freq_encoding
+        report: feature_comparison
+
+      LSTM_aa_freq:
+        dataset: LSTM_dataset
+        report: aa_freq
+      LSTM_seq_len:
+        dataset: LSTM_dataset
+        report: seq_len
+      LSTM_feature_distribution:
+        dataset: LSTM_dataset
+        encoding: kmer_freq_encoding
+        report: feature_distribution
+      LSTM_feature_comparison:
+        dataset: LSTM_dataset
+        encoding: kmer_freq_encoding
+        report: feature_comparison
