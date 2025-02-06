@@ -1,0 +1,46 @@
+definitions:
+  datasets:
+    dataset:
+      format: Generic
+      params:
+        path: IEDB_export_GILGFVFTL_human_TCR_filtered.tsv
+        is_repertoire: false
+        paired: false
+        separator: "\t"
+        region_type: IMGT_CDR3
+        import_illegal_characters: False
+        import_empty_aa_sequences: False
+        column_mapping:
+          Chain 2 - CDR3 Curated: junction_aa
+          Chain 2 - Curated V Gene: v_gene
+          Chain 2 - Curated J Gene: j_gene
+        columns_to_load:
+          - Chain 2 - CDR3 Curated
+          - Chain 2 - Curated V Gene
+          - Chain 2 - Curated J Gene
+  preprocessing_sequences:
+    preprocessing_filters:
+        - seq_len_filter:
+            SequenceLengthFilter:
+              sequence_type: AMINO_ACID
+              min_len: 12
+              max_len: 16
+              region_type: IMGT_CDR3
+#      - dup_seqs_filter:
+#          DuplicateSequenceFilter:
+#            filter_sequence_type: AMINO_ACID
+#            batch_size: 4
+#            count_agg: SUM
+#            region_type: IMGT_CDR3
+      # try seq length filtering instead of dup seqs
+
+
+instructions:
+  data_export:
+    type: DatasetExport
+    datasets:
+      - dataset
+    preprocessing_sequence: preprocessing_filters
+    number_of_processes: 4
+    export_formats:
+      - AIRR
