@@ -8,14 +8,14 @@ definitions:
         paired: False
         region_type: IMGT_CDR3
         separator: "\t"
-#    LSTM_dataset:
-#      format: AIRR
-#      params:
-#        path: 01_train_output/gen_model_LSTM/exported_combined_dataset/combined_gen_model_LSTM_dataset.tsv
-#        is_repertoire: False
-#        paired: False
-#        region_type: IMGT_CDR3
-#        separator: "\t"
+    LSTM_dataset:
+      format: AIRR
+      params:
+        path: 01_train_output/gen_model_LSTM/exported_combined_dataset/combined_gen_model_LSTM_dataset.tsv
+        is_repertoire: False
+        paired: False
+        region_type: IMGT_CDR3
+        separator: "\t"
   encodings:
     kmer_freq_encoding:
       KmerFrequency:
@@ -36,12 +36,22 @@ definitions:
     feature_distribution:
       FeatureDistribution:
         color_grouping_label: from_gen_model
+        plot_all_features: True
+        plot_top_n: 10
+        plot_bottom_n: 10
+        mode: "sparse"
     feature_comparison:
       FeatureComparison:
         comparison_label: from_gen_model
         show_error_bar: False
         log_scale: True
         keep_fraction: 0.4
+    feature_value_barplot:
+      FeatureValueBarplot:
+        color_grouping_label: from_gen_model
+        plot_all_features: false
+        plot_top_n: 10
+        plot_bottom_n: 10
 
 instructions:
   data_reports:
@@ -61,18 +71,26 @@ instructions:
         dataset: PWM_dataset
         encoding: kmer_freq_encoding
         report: feature_comparison
+      PWM_feature_value_barplot:
+        dataset: PWM_dataset
+        encoding: kmer_freq_encoding
+        report: feature_value_barplot
 
-#      LSTM_aa_freq:
-#        dataset: LSTM_dataset
-#        report: aa_freq
-#      LSTM_seq_len:
-#        dataset: LSTM_dataset
-#        report: seq_len
-#      LSTM_feature_distribution:
-#        dataset: LSTM_dataset
-#        encoding: kmer_freq_encoding
-#        report: feature_distribution
-#      LSTM_feature_comparison:
-#        dataset: LSTM_dataset
-#        encoding: kmer_freq_encoding
-#        report: feature_comparison
+      LSTM_aa_freq:
+        dataset: LSTM_dataset
+        report: aa_freq
+      LSTM_seq_len:
+        dataset: LSTM_dataset
+        report: seq_len
+      LSTM_feature_distribution:
+        dataset: LSTM_dataset
+        encoding: kmer_freq_encoding
+        report: feature_distribution
+      LSTM_feature_comparison:
+        dataset: LSTM_dataset
+        encoding: kmer_freq_encoding
+        report: feature_comparison
+      LSTM_feature_value_barplot:
+        dataset: LSTM_dataset
+        encoding: kmer_freq_encoding
+        report: feature_value_barplot
