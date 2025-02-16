@@ -3,7 +3,7 @@ definitions:
     preprocessed_dataset:
       format: AIRR
       params:
-        path: 00_preprocessing_output/data_export/dataset/AIRR/subset_dataset_SequenceDataset.tsv
+        path: 00_preprocessing_output/data_export/dataset/AIRR/subset_dataset_SequenceDataset_filtered.tsv
         is_repertoire: False
         paired: False
         region_type: IMGT_CDR3
@@ -18,7 +18,7 @@ definitions:
       SimpleLSTM:
         locus: beta
         sequence_type: amino_acid
-        num_epochs: 500
+        num_epochs: 100 #500
         hidden_size: 50
         learning_rate: 0.001
         batch_size: 100
@@ -36,10 +36,10 @@ instructions:
     method: pwm_model
     gen_examples_count: 1600
     number_of_processes: 4
-#  gen_model_LSTM:
-#    type: TrainGenModel
-#    export_combined_dataset: True
-#    dataset: dataset
-#    method: LSTM_model
-#    gen_examples_count: 1600
-#    number_of_processes: 4
+  gen_model_LSTM:
+    type: TrainGenModel
+    export_combined_dataset: True
+    dataset: preprocessed_dataset
+    method: LSTM_model
+    gen_examples_count: 1600
+    number_of_processes: 4
