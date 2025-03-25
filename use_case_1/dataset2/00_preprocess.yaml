@@ -3,7 +3,7 @@ definitions:
     dataset:
       format: Generic
       params:
-        path: IEDB_export_GILGFVFTL_human_TCR_filtered.tsv
+        path: IEDB_export_GLCTLVAML_human_TCR_filtered.tsv
         is_repertoire: false
         paired: false
         separator: "\t"
@@ -32,6 +32,7 @@ definitions:
               batch_size: 4
               count_agg: SUM
               region_type: IMGT_CDR3
+
 
 instructions:
   data_export:

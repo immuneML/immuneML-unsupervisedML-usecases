@@ -1,4 +1,5 @@
-git+https://github.com/uio-bmi/immuneML.git@development
+#git+https://github.com/uio-bmi/immuneML.git@development
+immuneml==3.0.11
 
 # additional packages for gen models
 numpy<2.0.0

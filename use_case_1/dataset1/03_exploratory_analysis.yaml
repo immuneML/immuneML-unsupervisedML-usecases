@@ -3,7 +3,7 @@ definitions:
     PWM_dataset:
       format: AIRR
       params:
-        path: 01_train_output/gen_model_PWM/exported_combined_dataset/combined_gen_model_PWM_dataset.tsv
+        path: 02_test_and_generated_output/data_export/PWM_dataset/AIRR/subset_PWM_dataset_filtered.tsv
         is_repertoire: False
         paired: False
         region_type: IMGT_CDR3
@@ -11,7 +11,7 @@ definitions:
     LSTM_dataset:
       format: AIRR
       params:
-        path: 01_train_output/gen_model_LSTM/exported_combined_dataset/combined_gen_model_LSTM_dataset.tsv
+        path: 02_test_and_generated_output/data_export/LSTM_dataset/AIRR/subset_LSTM_dataset_filtered.tsv
         is_repertoire: False
         paired: False
         region_type: IMGT_CDR3
@@ -24,6 +24,8 @@ definitions:
   reports:
     aa_freq:
       AminoAcidFrequencyDistribution:
+        alignment: IMGT
+        relative_frequency: True
         region_type: IMGT_CDR3
         split_by_label: True
         label: from_gen_model
@@ -36,22 +38,21 @@ definitions:
     feature_distribution:
       FeatureDistribution:
         color_grouping_label: from_gen_model
-        plot_all_features: True
+        plot_all_features: False
         plot_top_n: 10
-        plot_bottom_n: 10
         mode: "sparse"
     feature_comparison:
       FeatureComparison:
         comparison_label: from_gen_model
         show_error_bar: False
-        log_scale: True
+        log_scale: False
         keep_fraction: 0.4
-    feature_value_barplot:
-      FeatureValueBarplot:
-        color_grouping_label: from_gen_model
-        plot_all_features: false
-        plot_top_n: 10
-        plot_bottom_n: 10
+#    feature_value_barplot:
+#      FeatureValueBarplot:
+#        color_grouping_label: from_gen_model
+#        plot_all_features: false
+#        plot_top_n: 10
+#        plot_bottom_n: 10
 
 instructions:
   data_reports:
@@ -71,10 +72,10 @@ instructions:
         dataset: PWM_dataset
         encoding: kmer_freq_encoding
         report: feature_comparison
-      PWM_feature_value_barplot:
-        dataset: PWM_dataset
-        encoding: kmer_freq_encoding
-        report: feature_value_barplot
+#      PWM_feature_value_barplot:
+#        dataset: PWM_dataset
+#        encoding: kmer_freq_encoding
+#        report: feature_value_barplot
 
       LSTM_aa_freq:
         dataset: LSTM_dataset
@@ -90,7 +91,7 @@ instructions:
         dataset: LSTM_dataset
         encoding: kmer_freq_encoding
         report: feature_comparison
-      LSTM_feature_value_barplot:
-        dataset: LSTM_dataset
-        encoding: kmer_freq_encoding
-        report: feature_value_barplot
+#      LSTM_feature_value_barplot:
+#        dataset: LSTM_dataset
+#        encoding: kmer_freq_encoding
+#        report: feature_value_barplot

@@ -1,0 +1,38 @@
+definitions:
+  datasets:
+    PWM_dataset:
+      format: AIRR
+      params:
+        path: 01_train_output/gen_model_PWM/exported_combined_dataset/combined_gen_model_PWM_dataset.tsv
+        is_repertoire: False
+        paired: False
+        region_type: IMGT_CDR3
+        separator: "\t"
+    LSTM_dataset:
+      format: AIRR
+      params:
+        path: 01_train_output/gen_model_LSTM/exported_combined_dataset/combined_gen_model_LSTM_dataset.tsv
+        is_repertoire: False
+        paired: False
+        region_type: IMGT_CDR3
+        separator: "\t"
+
+  preprocessing_sequences:
+    my_preprocessing:
+      - my_used_for_training_filter: # Filter that keeps only examples with label "F" in the column "used_for_training"
+          MetadataFilter:
+            criteria:
+              type: IN
+              column: used_for_training
+              values: ["F"]
+
+instructions:
+  data_export:
+    type: DatasetExport
+    datasets:
+      - PWM_dataset
+      - LSTM_dataset
+    preprocessing_sequence: my_preprocessing
+    number_of_processes: 4
+    export_formats:
+      - AIRR

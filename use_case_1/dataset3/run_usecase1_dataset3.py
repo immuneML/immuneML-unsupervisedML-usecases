@@ -4,7 +4,11 @@ from immuneML.app.ImmuneMLApp import ImmuneMLApp
 # run preprocessing
 app = ImmuneMLApp(specification_path=Path("00_preprocess.yaml"), result_path=Path("00_preprocessing_output/"))
 app.run()
-#
+
+# # subsample data
+# app = ImmuneMLApp(specification_path=Path("00_subsample.yaml"), result_path=Path("00_subsample_output/"))
+# app.run()
+
 # # run training
 # app = ImmuneMLApp(specification_path=Path("01_train.yaml"), result_path=Path("01_train_output/"), logging_level="DEBUG")
 # app.run()
