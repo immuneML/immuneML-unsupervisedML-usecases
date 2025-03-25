@@ -1,0 +1,20 @@
+definitions:
+  datasets:
+    preprocessed_dataset:
+      format: AIRR
+      params:
+        path: 00_preprocessing_output/data_export/dataset/AIRR/subset_dataset_SequenceDataset_filtered.tsv
+        is_repertoire: False
+        paired: False
+        region_type: IMGT_CDR3
+        separator: "\t"
+
+instructions:
+  subsampling_instruction:
+    type: Subsampling
+    dataset: preprocessed_dataset
+    subsampled_dataset_sizes:
+      - 1000
+      - 200
+    dataset_export_formats:
+      - AIRR

@@ -1,0 +1,47 @@
+definitions:
+  datasets:
+    preprocessed_dataset:
+      format: AIRR
+      params:
+        path: 00_simulation_output/dataset/simulated_dataset.tsv
+        is_repertoire: False
+        paired: False
+        region_type: IMGT_CDR3
+        separator: "\t"
+  ml_methods:
+    pwm_model:
+      PWM:
+        locus: beta
+        sequence_type: amino_acid
+        region_type: IMGT_CDR3
+    LSTM_model:
+      SimpleLSTM:
+        locus: beta
+        sequence_type: amino_acid
+        num_epochs: 5 #00
+        hidden_size: 50
+        learning_rate: 0.001
+        batch_size: 100
+        embed_size: 100
+        temperature: 0.4
+        num_layers: 6
+        device: cpu
+        region_type: IMGT_CDR3
+
+instructions:
+  gen_model_PWM:
+    type: TrainGenModel
+    export_combined_dataset: True
+    training_percentage: 0.8
+    dataset: preprocessed_dataset
+    method: pwm_model
+    gen_examples_count: 1600
+    number_of_processes: 4
+  gen_model_LSTM:
+    type: TrainGenModel
+    training_percentage: 0.8
+    export_combined_dataset: True
+    dataset: preprocessed_dataset
+    method: LSTM_model
+    gen_examples_count: 1600
+    number_of_processes: 4
