@@ -19,36 +19,36 @@ def run_command(cmd):
 
 
 if __name__ == "__main__":
-    # # run preprocessing
-    # app = ImmuneMLApp(specification_path=Path("../configs/templates/00_preprocess.yaml"),
-    #                   result_path=Path("../results/00_preprocessing_output/"))
-    # app.run()
-    #
-    # # subsample data
-    # app = ImmuneMLApp(specification_path=Path("../configs/templates/01_subsample.yaml"),
-    #                   result_path=Path("../results/01_subsample_output/"))
-    # app.run()
+    # run preprocessing
+    app = ImmuneMLApp(specification_path=Path("../configs/templates/00_preprocess.yaml"),
+                      result_path=Path("../results/00_preprocessing_output/"))
+    app.run()
+
+    # subsample data
+    app = ImmuneMLApp(specification_path=Path("../configs/templates/01_subsample.yaml"),
+                      result_path=Path("../results/01_subsample_output/"))
+    app.run()
 
     # run training
-    # immuneml_train_commands = []
-    # train_template_file = "../configs/templates/02_train_template.yaml"
-    # train_configs_dir = "../configs/train_configs"
-    # os.makedirs(train_configs_dir, exist_ok=True)
+    immuneml_train_commands = []
+    train_template_file = "../configs/templates/02_train_template.yaml"
+    train_configs_dir = "../configs/train_configs"
+    os.makedirs(train_configs_dir, exist_ok=True)
 
-    #antigen_datasets = {"CMV": [10000, 5000, 1000], "HIV1": [2500, 1000, 500], "influenzaA": [4500, 2000, 500]}
+    antigen_datasets = {"CMV": [10000, 5000, 1000], "HIV1": [2500, 1000, 500], "influenzaA": [4500, 2000, 500]}
     #antigen_datasets = {"CMV": [5000, 1000], "HIV1": [2500, 1000, 500], "influenzaA": [4500, 2000, 500]}
-    antigen_datasets = {"CMV": [10000, 5000, 1000]}
-    # for antigen in antigen_datasets.keys():
-    #     for i, dataset_size in enumerate(antigen_datasets[antigen]):
-    #         input_path = f"../results/01_subsample_output/{antigen}/{antigen}_{dataset_size}_subsampled_{i + 1}/subset_{antigen}_subsampled.tsv"
-    #         gen_examples_count = int(dataset_size * 0.3)
-    #         output_config_file = f"{train_configs_dir}/02_train_{antigen}_{dataset_size}.yaml"
-    #         write_immuneml_config(train_template_file, input_path, output_config_file, gen_examples_count)
-    #         immuneml_train_commands.append(
-    #             f"immune-ml {output_config_file} ../results/02_train_output_multi/{antigen}/{antigen}_{dataset_size}/")
-    #
-    # with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
-    #     executor.map(run_command, immuneml_train_commands)
+
+    for antigen in antigen_datasets.keys():
+        for i, dataset_size in enumerate(antigen_datasets[antigen]):
+            input_path = f"../results/01_subsample_output/{antigen}/{antigen}_{dataset_size}_subsampled_{i + 1}/subset_{antigen}_subsampled.tsv"
+            gen_examples_count = int(dataset_size * 0.3)
+            output_config_file = f"{train_configs_dir}/02_train_{antigen}_{dataset_size}.yaml"
+            write_immuneml_config(train_template_file, input_path, output_config_file, gen_examples_count)
+            immuneml_train_commands.append(
+                f"immune-ml {output_config_file} ../results/02_train_output_multi/{antigen}/{antigen}_{dataset_size}/")
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
+        executor.map(run_command, immuneml_train_commands)
 
     # run reports
     immuneml_filter_commands, immuneml_report_commands = [], []

@@ -17,7 +17,7 @@ definitions:
     aa_freq:
       AminoAcidFrequencyDistribution:
         alignment: IMGT
-        relative_frequency: False
+        relative_frequency: True
         region_type: IMGT_CDR3
         split_by_label: True
         label: dataset_split
