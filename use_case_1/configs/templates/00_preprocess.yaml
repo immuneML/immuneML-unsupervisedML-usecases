@@ -1,0 +1,82 @@
+definitions:
+  datasets:
+    CMV_dataset:
+      format: Generic
+      params:
+        path: ../data/vdjdb_clean/vdjdb_CMV.tsv
+        is_repertoire: false
+        paired: false
+        separator: "\t"
+        region_type: IMGT_CDR3
+        import_illegal_characters: False
+        import_empty_aa_sequences: False
+        column_mapping:
+          CDR3: junction_aa
+          V: v_gene
+          J: j_gene
+        columns_to_load:
+          - CDR3
+          - V
+          - J
+    HIV1_dataset:
+      format: Generic
+      params:
+        path: ../data/vdjdb_clean/vdjdb_HIV1.tsv
+        is_repertoire: false
+        paired: false
+        separator: "\t"
+        region_type: IMGT_CDR3
+        import_illegal_characters: False
+        import_empty_aa_sequences: False
+        column_mapping:
+          CDR3: junction_aa
+          V: v_gene
+          J: j_gene
+        columns_to_load:
+          - CDR3
+          - V
+          - J
+    influenzaA_dataset:
+      format: Generic
+      params:
+        path: ../data/vdjdb_clean/vdjdb_influenzaA.tsv
+        is_repertoire: false
+        paired: false
+        separator: "\t"
+        region_type: IMGT_CDR3
+        import_illegal_characters: False
+        import_empty_aa_sequences: False
+        column_mapping:
+          CDR3: junction_aa
+          V: v_gene
+          J: j_gene
+        columns_to_load:
+          - CDR3
+          - V
+          - J
+  preprocessing_sequences:
+    preprocessing_filters:
+        - seq_len_filter:
+            SequenceLengthFilter:
+              sequence_type: AMINO_ACID
+              min_len: 6
+              max_len: 30
+              region_type: IMGT_CDR3
+        - dup_seqs_filter:
+            DuplicateSequenceFilter:
+              filter_sequence_type: AMINO_ACID
+              batch_size: 4
+              count_agg: SUM
+              region_type: IMGT_CDR3
+
+instructions:
+  data_export:
+    type: DatasetExport
+    datasets:
+      - CMV_dataset
+      - HIV1_dataset
+      - influenzaA_dataset
+    preprocessing_sequence: preprocessing_filters
+    number_of_processes: 4
+    export_formats:
+      - AIRR

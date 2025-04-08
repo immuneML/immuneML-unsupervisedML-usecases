@@ -1,0 +1,55 @@
+definitions:
+  datasets:
+    CMV:
+      format: AIRR
+      params:
+        path: ../results/00_preprocessing_output/data_export/CMV_dataset/AIRR/subset_CMV_dataset_SequenceDataset_filtered.tsv
+        is_repertoire: False
+        paired: False
+        region_type: IMGT_CDR3
+        separator: "\t"
+    HIV1:
+      format: AIRR
+      params:
+        path: ../results/00_preprocessing_output/data_export/HIV1_dataset/AIRR/subset_HIV1_dataset_SequenceDataset_filtered.tsv
+        is_repertoire: False
+        paired: False
+        region_type: IMGT_CDR3
+        separator: "\t"
+    influenzaA:
+      format: AIRR
+      params:
+        path: ../results/00_preprocessing_output/data_export/influenzaA_dataset/AIRR/subset_influenzaA_dataset_SequenceDataset_filtered.tsv
+        is_repertoire: False
+        paired: False
+        region_type: IMGT_CDR3
+        separator: "\t"
+
+instructions:
+  CMV:
+    type: Subsampling
+    dataset: CMV
+    subsampled_dataset_sizes:
+      - 10000
+      - 5000
+      - 1000
+    dataset_export_formats:
+      - AIRR
+  HIV1:
+    type: Subsampling
+    dataset: HIV1
+    subsampled_dataset_sizes:
+      - 2500
+      - 1000
+      - 500
+    dataset_export_formats:
+      - AIRR
+  influenzaA:
+    type: Subsampling
+    dataset: influenzaA
+    subsampled_dataset_sizes:
+      - 4500
+      - 2000
+      - 500
+    dataset_export_formats:
+      - AIRR

@@ -1,0 +1,55 @@
+definitions:
+  datasets:
+    dataset:
+      format: AIRR
+      params:
+        path: dataset.tsv
+        is_repertoire: False
+        paired: False
+        region_type: IMGT_CDR3
+        separator: "\t"
+  encodings:
+    kmer_freq_encoding:
+      KmerFrequency:
+        k: 3
+        sequence_type: amino_acid
+  reports:
+    aa_freq:
+      AminoAcidFrequencyDistribution:
+        alignment: IMGT
+        relative_frequency: False
+        region_type: IMGT_CDR3
+        split_by_label: True
+        label: dataset_split
+    seq_len:
+      SequenceLengthDistribution:
+        sequence_type: amino_acid
+        region_type: IMGT_CDR3
+        split_by_label: True
+        label: dataset_split
+        plot_frequencies: True
+    feature_distribution:
+      FeatureDistribution:
+        color_grouping_label: dataset_split
+        plot_all_features: False
+        plot_top_n: 10
+        mode: "sparse"
+    feature_comparison:
+      FeatureComparison:
+        comparison_label: dataset_split
+        show_error_bar: False
+        log_scale: False
+        keep_fraction: 0.4
+
+instructions:
+  data_reports:
+    type: ExploratoryAnalysis
+    analyses:
+      simple_analyses:
+        dataset: dataset
+        reports: [ aa_freq, seq_len ]
+      feature_analyses:
+        dataset: dataset
+        encoding: kmer_freq_encoding
+        reports: [ feature_distribution, feature_comparison ]
+

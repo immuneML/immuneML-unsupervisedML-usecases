@@ -1,0 +1,29 @@
+definitions:
+  datasets:
+    dataset:
+      format: AIRR
+      params:
+        path: dataset.tsv
+        is_repertoire: False
+        paired: False
+        region_type: IMGT_CDR3
+        separator: "\t"
+
+  preprocessing_sequences:
+    my_preprocessing:
+      - my_used_for_training_filter: # Filter that keeps only examples with label "F" in the column "used_for_training"
+          MetadataFilter:
+            criteria:
+              type: IN
+              column: used_for_training
+              values: ["F"]
+
+instructions:
+  data_export:
+    type: DatasetExport
+    datasets:
+      - dataset
+    preprocessing_sequence: my_preprocessing
+    number_of_processes: 4
+    export_formats:
+      - AIRR
