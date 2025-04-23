@@ -3,7 +3,7 @@ definitions:
     CMV:
       format: AIRR
       params:
-        path: ../results/00_preprocessing_output/data_export/CMV_dataset/AIRR/subset_CMV_dataset_SequenceDataset_filtered.tsv
+        path: ../results/experimental/00_preprocessing_output/data_export/CMV_dataset/AIRR/subset_CMV_dataset_SequenceDataset_filtered.tsv
         is_repertoire: False
         paired: False
         region_type: IMGT_CDR3
@@ -11,7 +11,7 @@ definitions:
     HIV1:
       format: AIRR
       params:
-        path: ../results/00_preprocessing_output/data_export/HIV1_dataset/AIRR/subset_HIV1_dataset_SequenceDataset_filtered.tsv
+        path: ../results/experimental/00_preprocessing_output/data_export/HIV1_dataset/AIRR/subset_HIV1_dataset_SequenceDataset_filtered.tsv
         is_repertoire: False
         paired: False
         region_type: IMGT_CDR3
@@ -19,7 +19,7 @@ definitions:
     influenzaA:
       format: AIRR
       params:
-        path: ../results/00_preprocessing_output/data_export/influenzaA_dataset/AIRR/subset_influenzaA_dataset_SequenceDataset_filtered.tsv
+        path: ../results/experimental/00_preprocessing_output/data_export/influenzaA_dataset/AIRR/subset_influenzaA_dataset_SequenceDataset_filtered.tsv
         is_repertoire: False
         paired: False
         region_type: IMGT_CDR3
