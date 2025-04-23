@@ -1,0 +1,89 @@
+definitions:
+  datasets:
+    dataset:
+      format: AIRR
+      params:
+        path: dataset.tsv
+        is_repertoire: False
+        paired: False
+        region_type: IMGT_CDR3
+        separator: "\t"
+  encodings:
+    kmer_freq_encoding:
+      KmerFrequency:
+        k: 3
+        sequence_type: amino_acid
+    gapped_kmer_encoding:
+      KmerFrequency:
+        sequence_encoding: gapped_kmer
+        sequence_type: amino_acid
+        k_left: 2
+        k_right: 1
+        min_gap: 2
+        max_gap: 2
+        scale_to_unit_variance: False
+        scale_to_zero_mean: False
+    gapped_kmer_encoding2:
+      KmerFrequency:
+        sequence_encoding: gapped_kmer
+        sequence_type: amino_acid
+        k_left: 2
+        k_right: 2
+        min_gap: 1
+        max_gap: 1
+        scale_to_unit_variance: False
+        scale_to_zero_mean: False
+  reports:
+    aa_freq:
+      AminoAcidFrequencyDistribution:
+        alignment: IMGT
+        relative_frequency: True
+        region_type: IMGT_CDR3
+        split_by_label: True
+        label: dataset_split
+    seq_len:
+      SequenceLengthDistribution:
+        sequence_type: amino_acid
+        region_type: IMGT_CDR3
+        split_by_label: True
+        label: dataset_split
+        plot_frequencies: True
+    feature_distribution:
+      FeatureDistribution:
+        color_grouping_label: dataset_split
+        plot_all_features: False
+        plot_top_n: 25
+        mode: "sparse"
+    feature_comparison:
+      FeatureComparison:
+        comparison_label: dataset_split
+        show_error_bar: False
+        log_scale: False
+        keep_fraction: 0.4
+    feature_value_barplot:
+      FeatureValueBarplot:
+        color_grouping_label: dataset_split
+        plot_all_features: false
+        plot_top_n: 15
+        plot_bottom_n: 10
+
+instructions:
+  data_reports:
+    type: ExploratoryAnalysis
+    analyses:
+      simple_analyses:
+        dataset: dataset
+        reports: [ aa_freq, seq_len ]
+      feature_analyses:
+        dataset: dataset
+        encoding: kmer_freq_encoding
+        reports: [ feature_distribution, feature_comparison, feature_value_barplot ]
+      ligo_kmer_analyses:
+        dataset: dataset
+        encoding: gapped_kmer_encoding
+        reports: [ feature_distribution, feature_comparison, feature_value_barplot ]
+      ligo_kmer_analyses2:
+        dataset: dataset
+        encoding: gapped_kmer_encoding2
+        reports: [ feature_distribution, feature_comparison, feature_value_barplot ]
+

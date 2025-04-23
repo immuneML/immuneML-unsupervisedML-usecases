@@ -1,0 +1,93 @@
+definitions:
+  motifs:
+    motif1:
+      seed: LGA
+    motif2:
+      seed: AS/YY
+      min_gap: 1
+      max_gap: 1
+    motif3:
+      seed: SAA
+    motif4:
+      seed: SGLA
+    motif5:
+      seed: GS/A
+      min_gap: 2
+      max_gap: 2
+  signals:
+    signal1:
+      motifs:
+        - motif1
+    signal2:
+      motifs:
+        - motif2
+    signal3:
+      motifs:
+        - motif3
+    signal4:
+      motifs:
+        - motif4
+    signal5:
+      motifs:
+        - motif5
+  simulations:
+    sim1:
+      is_repertoire: false
+      paired: false
+      sequence_type: amino_acid
+      simulation_strategy: RejectionSampling
+      remove_seqs_with_signals: true
+      sim_items:
+#        sim_item_1:
+#          generative_model:
+#            default_model_name: humanTRB
+#            type: OLGA
+#          is_noise: false
+#          number_of_examples: 100
+#          signals:
+#            signal1: 1
+        sim_item_2:
+          generative_model:
+            default_model_name: humanTRB
+            type: OLGA
+          is_noise: false
+          number_of_examples: 1500
+          signals:
+            signal2: 1
+#        sim_item_3:
+#          generative_model:
+#            default_model_name: humanTRB
+#            type: OLGA
+#          is_noise: false
+#          number_of_examples: 100
+#          signals:
+#            signal3: 1
+#        sim_item_4:
+#          generative_model:
+#            default_model_name: humanTRB
+#            type: OLGA
+#          is_noise: false
+#          number_of_examples: 100
+#          signals:
+#            signal4: 1
+        sim_item_5:
+          generative_model:
+            default_model_name: humanTRB
+            type: OLGA
+          is_noise: false
+          number_of_examples: 1500
+          signals:
+            signal5: 1
+
+instructions:
+  dataset:
+    export_p_gens: false
+    max_iterations: 5000
+    number_of_processes: 4
+    sequence_batch_size: 1000
+    simulation: sim1
+    type: LigoSim
+#  feasibility_summary:
+#    type: FeasibilitySummary
+#    simulation: sim1
+#    sequence_count: 1000
