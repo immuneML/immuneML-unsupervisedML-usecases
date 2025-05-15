@@ -9,11 +9,25 @@ definitions:
         region_type: IMGT_CDR3
         separator: "\t"
   encodings:
-    kmer_freq_encoding:
+    3mer_encoding:
       KmerFrequency:
         k: 3
         sequence_type: amino_acid
-    gapped_kmer_encoding:
+        scale_to_unit_variance: False
+        scale_to_zero_mean: False
+    4mer_encoding:
+      KmerFrequency:
+        k: 4
+        sequence_type: amino_acid
+        scale_to_unit_variance: False
+        scale_to_zero_mean: False
+    5mer_encoding:
+      KmerFrequency:
+        k: 5
+        sequence_type: amino_acid
+        scale_to_unit_variance: False
+        scale_to_zero_mean: False
+    gapped_3mer_encoding:
       KmerFrequency:
         sequence_encoding: gapped_kmer
         sequence_type: amino_acid
@@ -23,7 +37,7 @@ definitions:
         max_gap: 2
         scale_to_unit_variance: False
         scale_to_zero_mean: False
-    gapped_kmer_encoding2:
+    gapped_4mer_encoding:
       KmerFrequency:
         sequence_encoding: gapped_kmer
         sequence_type: amino_acid
@@ -34,56 +48,41 @@ definitions:
         scale_to_unit_variance: False
         scale_to_zero_mean: False
   reports:
-    aa_freq:
-      AminoAcidFrequencyDistribution:
-        alignment: IMGT
-        relative_frequency: True
-        region_type: IMGT_CDR3
-        split_by_label: True
-        label: dataset_split
-    seq_len:
-      SequenceLengthDistribution:
-        sequence_type: amino_acid
-        region_type: IMGT_CDR3
-        split_by_label: True
-        label: dataset_split
-        plot_frequencies: True
     feature_distribution:
       FeatureDistribution:
         color_grouping_label: dataset_split
         plot_all_features: False
         plot_top_n: 25
         mode: "sparse"
-    feature_comparison:
-      FeatureComparison:
-        comparison_label: dataset_split
-        show_error_bar: False
-        log_scale: False
-        keep_fraction: 0.4
     feature_value_barplot:
       FeatureValueBarplot:
         color_grouping_label: dataset_split
         plot_all_features: false
-        plot_top_n: 15
-        plot_bottom_n: 10
+        plot_top_n: 25
 
 instructions:
   data_reports:
     type: ExploratoryAnalysis
+    number_of_processes: 1
     analyses:
-      simple_analyses:
+      3mer_analysis:
         dataset: dataset
-        reports: [ aa_freq, seq_len ]
-      feature_analyses:
+        encoding: 3mer_encoding
+        reports: [ feature_value_barplot ]
+      4mer_analysis:
         dataset: dataset
-        encoding: kmer_freq_encoding
-        reports: [ feature_distribution, feature_comparison, feature_value_barplot ]
-      ligo_kmer_analyses:
+        encoding: 4mer_encoding
+        reports: [ feature_value_barplot ]
+      5mer_analysis:
         dataset: dataset
-        encoding: gapped_kmer_encoding
-        reports: [ feature_distribution, feature_comparison, feature_value_barplot ]
-      ligo_kmer_analyses2:
+        encoding: 5mer_encoding
+        reports: [ feature_value_barplot ]
+      gapped_3mer_analysis:
         dataset: dataset
-        encoding: gapped_kmer_encoding2
-        reports: [ feature_distribution, feature_comparison, feature_value_barplot ]
+        encoding: gapped_3mer_encoding
+        reports: [ feature_value_barplot ]
+      gapped_4mer_analysis:
+        dataset: dataset
+        encoding: gapped_4mer_encoding
+        reports: [ feature_value_barplot ]
 

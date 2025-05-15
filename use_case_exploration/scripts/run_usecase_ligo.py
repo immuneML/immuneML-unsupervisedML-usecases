@@ -101,17 +101,17 @@ def prepare_report_commands_2(antigen, dataset_size, exploratory_analysis_templa
 
 
 def main():
-    configs_path = "../configs"
-    output_dir = "../results/simulated"
-    simulation_datasets = {"simulation1": [3000]}
-    models = ["PWM", "LSTM", "VAE"]
+    configs_path = "use_case_1/configs"
+    output_dir = "use_case_1/results/simulated2"
+    simulation_datasets = {"simulation2": [5000]}
+    models = [ "PWM" ] #["PWM", "LSTM", "VAE"]
 
     train_commands, filter_commands, report_commands, report_commands_2 = prepare_immuneml_commands(simulation_datasets,
                                                                                  configs_dir=configs_path,
                                                                                  output_dir=output_dir,
                                                                                  models=models)
     # # simulate data
-    # run_simulation(specification_path=f"{configs_path}/00_simulation.yaml",
+    # run_simulation(specification_path=f"{configs_path}/00_simulation2.yaml",
     #                result_path=f"{output_dir}/00_simulation_output/")
     #
     # # run training
@@ -121,10 +121,10 @@ def main():
     # # run filtering
     # with concurrent.futures.ThreadPoolExecutor() as executor:
     #     executor.map(run_command, filter_commands)
-
-    # # run reports
-    # with concurrent.futures.ThreadPoolExecutor() as executor:
-    #     executor.map(run_command, report_commands)
+    #
+    # run reports
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        executor.map(run_command, report_commands)
 
     # run reports 2
     with concurrent.futures.ThreadPoolExecutor() as executor:
