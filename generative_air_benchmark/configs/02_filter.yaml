@@ -1,0 +1,47 @@
+definitions:
+  datasets:
+    PWM_dataset:
+      format: AIRR
+      params:
+        path: generative_air_benchmark/results/01_train/PWM/exported_combined_dataset/combined_PWM_dataset.tsv
+        is_repertoire: False
+        paired: False
+        region_type: IMGT_CDR3
+        separator: "\t"
+    VAE_dataset:
+      format: AIRR
+      params:
+        path: generative_air_benchmark/results/01_train/VAE/exported_combined_dataset/combined_VAE_dataset.tsv
+        is_repertoire: False
+        paired: False
+        region_type: IMGT_CDR3
+        separator: "\t"
+    LSTM_dataset:
+      format: AIRR
+      params:
+        path: generative_air_benchmark/results/01_train/LSTM/exported_combined_dataset/combined_LSTM_dataset.tsv
+        is_repertoire: False
+        paired: False
+        region_type: IMGT_CDR3
+        separator: "\t"
+
+  preprocessing_sequences:
+    my_preprocessing:
+      - my_used_for_training_filter:
+          MetadataFilter:
+            criteria:
+              type: IN
+              column: used_for_training
+              values: ["F"]
+
+instructions:
+  data_export:
+    type: DatasetExport
+    datasets:
+      - PWM_dataset
+      - VAE_dataset
+      - LSTM_dataset
+    preprocessing_sequence: my_preprocessing
+    number_of_processes: 4
+    export_formats:
+      - AIRR
