@@ -1,0 +1,72 @@
+definitions:
+  datasets:
+    dataset:
+      format: AIRR
+      params:
+        path: generative_air_benchmark/dummy_results/00_simulation/dataset/simulated_dataset.tsv
+        is_repertoire: False
+        paired: False
+        region_type: IMGT_CDR3
+        separator: "\t"
+  ml_methods:
+    PWM:
+      PWM:
+        locus: beta
+        sequence_type: amino_acid
+        region_type: IMGT_CDR3
+    LSTM:
+      SimpleLSTM:
+        locus: beta
+        sequence_type: amino_acid
+        num_epochs: 20
+        hidden_size: 10
+        learning_rate: 0.001
+        batch_size: 100
+        embed_size: 2
+        temperature: 1
+        num_layers: 3
+        device: cpu
+        region_type: IMGT_CDR3
+    VAE:
+      SimpleVAE:
+        batch_size: 100
+        beta: 0.75
+        cdr3_embed_dim: 21
+        locus: beta
+        device: cpu
+        j_gene_embed_dim: 13
+        latent_dim: 30
+        linear_nodes_count: 256
+        num_epochs: 5
+        patience: 1
+        pretrains: 1
+        v_gene_embed_dim: 30
+        warmup_epochs: 1
+        validation_split: 0.1
+
+
+instructions:
+  PWM:
+    type: TrainGenModel
+    export_combined_dataset: True
+    dataset: dataset
+    method: PWM
+    gen_examples_count: 15
+    number_of_processes: 1
+    training_percentage: 0.7
+  LSTM:
+    type: TrainGenModel
+    export_combined_dataset: True
+    dataset: dataset
+    method: LSTM
+    gen_examples_count: 15
+    number_of_processes: 1
+    training_percentage: 0.7
+  VAE:
+    type: TrainGenModel
+    export_combined_dataset: True
+    dataset: dataset
+    method: VAE
+    gen_examples_count: 15
+    number_of_processes: 1
+    training_percentage: 0.7
