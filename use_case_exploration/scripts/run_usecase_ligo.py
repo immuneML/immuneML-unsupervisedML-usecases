@@ -101,8 +101,8 @@ def prepare_report_commands_2(antigen, dataset_size, exploratory_analysis_templa
 
 
 def main():
-    configs_path = "use_case_1/configs"
-    output_dir = "use_case_1/results/simulated2"
+    configs_path = "use_case_exploration/configs"
+    output_dir = "use_case_exploration/results/simulated2"
     simulation_datasets = {"simulation2": [5000]}
     models = [ "PWM" ] #["PWM", "LSTM", "VAE"]
 
@@ -122,9 +122,9 @@ def main():
     # with concurrent.futures.ThreadPoolExecutor() as executor:
     #     executor.map(run_command, filter_commands)
     #
-    # run reports
-    with concurrent.futures.ThreadPoolExecutor() as executor:
-        executor.map(run_command, report_commands)
+    # # run reports
+    # with concurrent.futures.ThreadPoolExecutor() as executor:
+    #     executor.map(run_command, report_commands)
 
     # run reports 2
     with concurrent.futures.ThreadPoolExecutor() as executor:

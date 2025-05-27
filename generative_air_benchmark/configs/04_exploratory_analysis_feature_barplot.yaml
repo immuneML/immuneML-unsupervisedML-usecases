@@ -69,6 +69,7 @@ definitions:
         color_grouping_label: dataset_split
         plot_all_features: false
         plot_top_n: 25
+        error_function: sem
 
 instructions:
   data_reports:

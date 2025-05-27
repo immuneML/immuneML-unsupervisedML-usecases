@@ -70,6 +70,7 @@ definitions:
         show_error_bar: False
         log_scale: False
         keep_fraction: 0.4
+        error_function: sem
 
 instructions:
   data_reports:

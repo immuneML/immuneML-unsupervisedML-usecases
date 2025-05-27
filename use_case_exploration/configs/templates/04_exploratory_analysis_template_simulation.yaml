@@ -68,18 +68,21 @@ definitions:
         plot_all_features: False
         plot_top_n: 25
         mode: "sparse"
+        error_function: sem
     feature_comparison:
       FeatureComparison:
         comparison_label: dataset_split
         show_error_bar: False
         log_scale: False
         keep_fraction: 0.4
+        error_function: sem
     feature_value_barplot:
       FeatureValueBarplot:
         color_grouping_label: dataset_split
         plot_all_features: false
         plot_top_n: 15
         plot_bottom_n: 10
+        error_function: sem
 
 instructions:
   data_reports:
