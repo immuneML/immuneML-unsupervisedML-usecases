@@ -42,6 +42,6 @@ instructions:
       - VAE_dataset
       - LSTM_dataset
     preprocessing_sequence: my_preprocessing
-    number_of_processes: 4
+    number_of_processes: 1
     export_formats:
       - AIRR
