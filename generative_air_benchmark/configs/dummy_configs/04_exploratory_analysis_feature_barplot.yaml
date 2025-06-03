@@ -8,6 +8,7 @@ definitions:
         paired: False
         region_type: IMGT_CDR3
         separator: "\t"
+        import_illegal_characters: True
     VAE_dataset:
       format: AIRR
       params:
@@ -16,6 +17,7 @@ definitions:
         paired: False
         region_type: IMGT_CDR3
         separator: "\t"
+        import_illegal_characters: True
     LSTM_dataset:
       format: AIRR
       params:
@@ -24,6 +26,7 @@ definitions:
         paired: False
         region_type: IMGT_CDR3
         separator: "\t"
+        import_illegal_characters: True
   encodings:
     3mer_encoding:
       KmerFrequency:
