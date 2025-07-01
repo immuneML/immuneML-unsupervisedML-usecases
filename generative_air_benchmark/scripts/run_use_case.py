@@ -48,14 +48,14 @@ def main():
     # run_simulation(specification_path=f"{configs_dir}/00_simulation.yaml",
     #                result_path=f"{output_dir}/00_simulation/")
     #
-    # get train and test ids
-    get_train_and_test_ids(input_data_path=f"{output_dir}/00_simulation/dataset/simulated_dataset.tsv",
-                           output_path=f"{output_dir}/00_simulation/",
-                           training_percentage=training_percentage)
-
-    # run training
-    run_immuneML(specification_path=f"{configs_dir}/01_train.yaml",
-                 result_path=f"{output_dir}/01_train/")
+    # # get train and test ids
+    # get_train_and_test_ids(input_data_path=f"{output_dir}/00_simulation/dataset/simulated_dataset.tsv",
+    #                        output_path=f"{output_dir}/00_simulation/",
+    #                        training_percentage=training_percentage)
+    #
+    # # run training
+    # run_immuneML(specification_path=f"{configs_dir}/01_train.yaml",
+    #              result_path=f"{output_dir}/01_train/")
 
     # # run filtering
     # run_immuneML(specification_path=f"{configs_dir}/02_filter.yaml",
