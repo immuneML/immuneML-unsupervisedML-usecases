@@ -97,6 +97,10 @@ instructions:
         dataset: combined_dataset
         encoding: 3mer_encoding
         reports: [ feature_value_barplot ]
+      gapped_4mer_analysis:
+        dataset: combined_dataset
+        encoding: gapped_4mer_encoding
+        reports: [ feature_value_barplot ]
   #      4mer_analysis:
   #        dataset: combined_dataset
   #        encoding: 4mer_encoding
@@ -109,7 +113,3 @@ instructions:
   #        dataset: combined_dataset
   #        encoding: gapped_3mer_encoding
   #        reports: [ feature_value_barplot ]
-        gapped_4mer_analysis:
-          dataset: combined_dataset
-          encoding: gapped_4mer_encoding
-          reports: [ feature_value_barplot ]

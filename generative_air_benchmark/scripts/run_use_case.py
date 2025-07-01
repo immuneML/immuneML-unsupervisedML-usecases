@@ -44,18 +44,18 @@ def main():
     output_dir = "generative_air_benchmark/results"
     training_percentage = 0.7
 
-    # simulate data
-    run_simulation(specification_path=f"{configs_dir}/00_simulation.yaml",
-                   result_path=f"{output_dir}/00_simulation/")
-
-    # get train and test ids
-    get_train_and_test_ids(input_data_path=f"{output_dir}/00_simulation/dataset/simulated_dataset.tsv",
-                           output_path=f"{output_dir}/00_simulation/",
-                           training_percentage=training_percentage)
-
-    # run training
-    run_immuneML(specification_path=f"{configs_dir}/01_train.yaml",
-                 result_path=f"{output_dir}/01_train/")
+    # # simulate data
+    # run_simulation(specification_path=f"{configs_dir}/00_simulation.yaml",
+    #                result_path=f"{output_dir}/00_simulation/")
+    #
+    # # get train and test ids
+    # get_train_and_test_ids(input_data_path=f"{output_dir}/00_simulation/dataset/simulated_dataset.tsv",
+    #                        output_path=f"{output_dir}/00_simulation/",
+    #                        training_percentage=training_percentage)
+    #
+    # # run training
+    # run_immuneML(specification_path=f"{configs_dir}/01_train.yaml",
+    #              result_path=f"{output_dir}/01_train/")
 
     # # run filtering
     # run_immuneML(specification_path=f"{configs_dir}/02_filter.yaml",
