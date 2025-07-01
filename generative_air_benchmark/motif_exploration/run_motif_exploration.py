@@ -4,8 +4,8 @@ from immuneML.app.LigoApp import LigoApp
 
 
 def main():
-    # app = LigoApp(specification_path=Path("simulation.yaml"), result_path=Path("simulation_output/"))
-    # app.run()
+    app = LigoApp(specification_path=Path("simulation.yaml"), result_path=Path("simulation_output/"))
+    app.run()
 
     app = ImmuneMLApp(specification_path=Path("specs.yaml"), result_path=Path("report_output/"))
     app.run()

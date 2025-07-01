@@ -13,15 +13,21 @@ definitions:
       KmerFrequency:
         k: 3
         sequence_type: amino_acid
+        scale_to_unit_variance: False
+        scale_to_zero_mean: False
     4mer_encoding:
       KmerFrequency:
         k: 4
         sequence_type: amino_acid
+        scale_to_unit_variance: False
+        scale_to_zero_mean: False
     5mer_encoding:
       KmerFrequency:
         k: 5
         sequence_type: amino_acid
-    gapped_4mer_encoding_1:
+        scale_to_unit_variance: False
+        scale_to_zero_mean: False
+    gapped_3mer_encoding:
       KmerFrequency:
         sequence_encoding: gapped_kmer
         sequence_type: amino_acid
@@ -31,7 +37,7 @@ definitions:
         max_gap: 2
         scale_to_unit_variance: False
         scale_to_zero_mean: False
-    gapped_4mer_encoding_2:
+    gapped_4mer_encoding:
       KmerFrequency:
         sequence_encoding: gapped_kmer
         sequence_type: amino_acid
@@ -41,18 +47,12 @@ definitions:
         max_gap: 1
         scale_to_unit_variance: False
         scale_to_zero_mean: False
-
   reports:
     feature_value_barplot:
       FeatureValueBarplot:
         plot_all_features: false
         plot_top_n: 100
-        show_error_bar: false
-    feature_distribution:
-      FeatureDistribution:
-        plot_all_features: false
-        plot_top_n: 100
-        mode: "sparse"
+        error_function: sem
 
 
 instructions:
@@ -62,21 +62,21 @@ instructions:
       3mer_analysis:
         dataset: dataset
         encoding: 3mer_encoding
-        reports: [ feature_value_barplot, feature_distribution ]
+        reports: [ feature_value_barplot ]
       4mer_analysis:
         dataset: dataset
         encoding: 4mer_encoding
-        reports: [ feature_value_barplot, feature_distribution ]
+        reports: [ feature_value_barplot ]
       5mer_analysis:
         dataset: dataset
         encoding: 5mer_encoding
-        reports: [ feature_value_barplot, feature_distribution ]
-      gapped_4mer_analysis_1:
+        reports: [ feature_value_barplot ]
+      gapped_3mer_analysis:
         dataset: dataset
-        encoding: gapped_4mer_encoding_1
-        reports: [ feature_value_barplot, feature_distribution ]
-      gapped_4mer_analysis_2:
+        encoding: gapped_3mer_encoding
+        reports: [ feature_value_barplot ]
+      gapped_4mer_analysis:
         dataset: dataset
-        encoding: gapped_4mer_encoding_2
-        reports: [ feature_value_barplot, feature_distribution ]
+        encoding: gapped_4mer_encoding
+        reports: [ feature_value_barplot ]
 

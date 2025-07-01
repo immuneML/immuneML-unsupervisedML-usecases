@@ -12,7 +12,7 @@ definitions:
             default_model_name: humanTRB
             type: OLGA
           is_noise: false
-          number_of_examples: 1000
+          number_of_examples: 5000
           signals: {}
 
 instructions:
