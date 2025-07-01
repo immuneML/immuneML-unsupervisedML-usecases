@@ -67,5 +67,5 @@ instructions:
     number_of_processes: 1
     split_strategy: MANUAL
     split_config:
-      train_metadata_path: generative_air_benchmark/dummy_results/00_simulation/train_ids.csv
-      test_metadata_path: generative_air_benchmark/dummy_results/00_simulation/test_ids.csv
+      train_metadata_path: generative_air_benchmark/results/00_simulation/train_ids.csv
+      test_metadata_path: generative_air_benchmark/results/00_simulation/test_ids.csv
