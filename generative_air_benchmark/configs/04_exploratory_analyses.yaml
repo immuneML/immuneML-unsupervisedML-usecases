@@ -90,17 +90,17 @@ instructions:
     type: ExploratoryAnalysis
     number_of_processes: 1
     analyses:
-#      true_motifs_summary_analysis:
-#        dataset: combined_dataset
-#        reports: [ true_motifs_summary_barplot ]
-#      3mer_analysis:
-#        dataset: combined_dataset
-#        encoding: 3mer_encoding
-#        reports: [ feature_value_barplot ]
-#      gapped_4mer_analysis:
-#        dataset: combined_dataset
-#        encoding: gapped_4mer_encoding
-#        reports: [ feature_value_barplot ]
+      true_motifs_summary_analysis:
+        dataset: combined_dataset
+        reports: [ true_motifs_summary_barplot ]
+      3mer_analysis:
+        dataset: combined_dataset
+        encoding: 3mer_encoding
+        reports: [ feature_value_barplot ]
+      gapped_4mer_analysis:
+        dataset: combined_dataset
+        encoding: gapped_4mer_encoding
+        reports: [ feature_value_barplot ]
       4mer_analysis:
         dataset: combined_dataset
         encoding: 4mer_encoding
