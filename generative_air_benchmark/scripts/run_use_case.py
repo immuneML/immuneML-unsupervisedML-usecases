@@ -14,7 +14,8 @@ def run_immuneML(specification_path, result_path):
     app = ImmuneMLApp(specification_path=Path(specification_path), result_path=Path(result_path))
     app.run()
 
-def get_train_and_test_ids(input_data_path, output_path):
+
+def get_train_and_test_ids(input_data_path, output_path, training_percentage=0.7):
     input_data_df = pd.read_csv(input_data_path, sep="\t")
 
     if input_data_df["sequence_id"].isnull().all():
@@ -26,7 +27,7 @@ def get_train_and_test_ids(input_data_path, output_path):
         signal_df = input_data_df[input_data_df[signal] == 1]
 
         sequence_ids = signal_df["sequence_id"].tolist()
-        split_idx = int(0.7 * len(sequence_ids))
+        split_idx = int(training_percentage * len(sequence_ids))
         train_ids.extend(sequence_ids[:split_idx])
         test_ids.extend(sequence_ids[split_idx:])
 
@@ -41,15 +42,21 @@ def get_train_and_test_ids(input_data_path, output_path):
 def main():
     configs_dir = "generative_air_benchmark/configs"
     output_dir = "generative_air_benchmark/results"
+    training_percentage = 0.7
 
-    # # simulate data
-    # run_simulation(specification_path=f"{configs_dir}/00_simulation.yaml",
-    #                result_path=f"{output_dir}/00_simulation/")
+    # simulate data
+    run_simulation(specification_path=f"{configs_dir}/00_simulation.yaml",
+                   result_path=f"{output_dir}/00_simulation/")
+
+    # get train and test ids
+    get_train_and_test_ids(input_data_path=f"{output_dir}/00_simulation/dataset/simulated_dataset.tsv",
+                           output_path=f"{output_dir}/00_simulation/",
+                           training_percentage=training_percentage)
 
     # run training
     run_immuneML(specification_path=f"{configs_dir}/01_train.yaml",
                  result_path=f"{output_dir}/01_train/")
-    #
+
     # # run filtering
     # run_immuneML(specification_path=f"{configs_dir}/02_filter.yaml",
     #              result_path=f"{output_dir}/02_filter/")
@@ -57,10 +64,10 @@ def main():
     # # run feature comparison reports
     # run_immuneML(specification_path=f"{configs_dir}/03_exploratory_analysis_feature_comparison.yaml",
     #              result_path=f"{output_dir}/03_feature_comparison/")
-    #
-    # # run feature value bar plot reports
-    # run_immuneML(specification_path=f"{configs_dir}/04_exploratory_analysis_feature_barplot.yaml",
-    #              result_path=f"{output_dir}/04_feature_value_barplot/")
+
+    # run feature value bar plot reports
+    run_immuneML(specification_path=f"{configs_dir}/04_exploratory_analyses.yaml",
+                 result_path=f"{output_dir}/04_exploratory_analyses/")
 
 
 if __name__ == "__main__":
