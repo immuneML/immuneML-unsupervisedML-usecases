@@ -27,6 +27,19 @@ definitions:
         num_layers: 3
         device: cpu
         region_type: IMGT_CDR3
+    LSTM_small:
+      SimpleLSTM:
+        locus: beta
+        sequence_type: amino_acid
+        num_epochs: 20
+        hidden_size: 64
+        learning_rate: 0.001
+        batch_size: 100
+        embed_size: 128
+        temperature: 1
+        num_layers: 3
+        device: cpu
+        region_type: IMGT_CDR3
     VAE:
       SimpleVAE:
         batch_size: 100
@@ -49,7 +62,7 @@ instructions:
     type: TrainGenModel
     export_combined_dataset: True
     dataset: dataset
-    methods: [ PWM, VAE, LSTM ]
+    methods: [ PWM, VAE, LSTM, LSTM_small ]
     gen_examples_count: 1500
     number_of_processes: 1
     split_strategy: MANUAL
