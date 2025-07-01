@@ -5,15 +5,15 @@ definitions:
     motif2:
       seed: GQET
     motif3:
-      seed: PNYGY
+      seed: NQPQH #PNYGY
     motif4:
-      seed: AS/YY
-      min_gap: 1
-      max_gap: 1
-    motif5:
-      seed: GS/A
+      seed: AS/G #GS/A
       min_gap: 2
       max_gap: 2
+    motif5:
+      seed: SS/GT #SN/PQ #AS/YY
+      min_gap: 1
+      max_gap: 1
   signals:
     signal1:
       motifs:

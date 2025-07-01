@@ -3,7 +3,7 @@ definitions:
     dataset:
       format: AIRR
       params:
-        path: generative_air_benchmark/results/00_simulation/dataset/simulated_dataset.tsv
+        path: generative_air_benchmark/results/00_simulation/full_simulated_dataset.tsv
         is_repertoire: False
         paired: False
         region_type: IMGT_CDR3
@@ -44,29 +44,15 @@ definitions:
         warmup_epochs: 20
         validation_split: 0.1
 
-
 instructions:
-  PWM:
+  gen_models:
     type: TrainGenModel
     export_combined_dataset: True
     dataset: dataset
-    method: PWM
+    methods: [ PWM, VAE, LSTM ]
     gen_examples_count: 1500
     number_of_processes: 1
-    training_percentage: 0.7
-  LSTM:
-    type: TrainGenModel
-    export_combined_dataset: True
-    dataset: dataset
-    method: LSTM
-    gen_examples_count: 1500
-    number_of_processes: 1
-    training_percentage: 0.7
-  VAE:
-    type: TrainGenModel
-    export_combined_dataset: True
-    dataset: dataset
-    method: VAE
-    gen_examples_count: 1500
-    number_of_processes: 1
-    training_percentage: 0.7
+    split_strategy: MANUAL
+    split_config:
+      train_metadata_path: generative_air_benchmark/dummy_results/00_simulation/train_ids.csv
+      test_metadata_path: generative_air_benchmark/dummy_results/00_simulation/test_ids.csv

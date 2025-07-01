@@ -1,0 +1,115 @@
+definitions:
+  datasets:
+    combined_dataset:
+      format: AIRR
+      params:
+        path: generative_air_benchmark/dummy_results/01_train/gen_models/exported_combined_dataset/combined_gen_models_dataset.tsv
+        is_repertoire: False
+        paired: False
+        region_type: IMGT_CDR3
+        separator: "\t"
+        import_illegal_characters: True
+  encodings:
+    3mer_encoding:
+      KmerFrequency:
+        k: 3
+        sequence_type: amino_acid
+        scale_to_unit_variance: False
+        scale_to_zero_mean: False
+    4mer_encoding:
+      KmerFrequency:
+        k: 4
+        sequence_type: amino_acid
+        scale_to_unit_variance: False
+        scale_to_zero_mean: False
+    5mer_encoding:
+      KmerFrequency:
+        k: 5
+        sequence_type: amino_acid
+        scale_to_unit_variance: False
+        scale_to_zero_mean: False
+    gapped_3mer_encoding:
+      KmerFrequency:
+        sequence_encoding: gapped_kmer
+        sequence_type: amino_acid
+        k_left: 2
+        k_right: 1
+        min_gap: 2
+        max_gap: 2
+        scale_to_unit_variance: False
+        scale_to_zero_mean: False
+    gapped_4mer_encoding:
+      KmerFrequency:
+        sequence_encoding: gapped_kmer
+        sequence_type: amino_acid
+        k_left: 2
+        k_right: 2
+        min_gap: 1
+        max_gap: 1
+        scale_to_unit_variance: False
+        scale_to_zero_mean: False
+  reports:
+    feature_value_barplot:
+      FeatureValueBarplot:
+        color_grouping_label: data_origin
+        plot_all_features: false
+        plot_top_n: 15
+        error_function: sem
+    true_motifs_summary_barplot:
+      TrueMotifsSummaryBarplot:
+        region_type: IMGT_CDR3
+        implanted_motifs_per_signal:
+          signal1:
+            seeds:
+              - DEQ
+            gap_sizes:
+              - 0
+          signal2:
+            seeds:
+              - GQET
+            gap_sizes:
+              - 0
+          signal3:
+            seeds:
+              - NQPQH
+            gap_sizes:
+              - 0
+          signal4:
+            seeds:
+              - AS/G
+            gap_sizes:
+              - 2
+          signal5:
+            seeds:
+              - SS/GT
+            gap_sizes:
+              - 1
+
+instructions:
+  data_reports:
+    type: ExploratoryAnalysis
+    number_of_processes: 1
+    analyses:
+      true_motifs_summary_analysis:
+        dataset: combined_dataset
+        reports: [ true_motifs_summary_barplot ]
+      3mer_analysis:
+        dataset: combined_dataset
+        encoding: 3mer_encoding
+        reports: [ feature_value_barplot ]
+#      4mer_analysis:
+#        dataset: combined_dataset
+#        encoding: 4mer_encoding
+#        reports: [ feature_value_barplot ]
+#      5mer_analysis:
+#        dataset: combined_dataset
+#        encoding: 5mer_encoding
+#        reports: [ feature_value_barplot ]
+#      gapped_3mer_analysis:
+#        dataset: combined_dataset
+#        encoding: gapped_3mer_encoding
+#        reports: [ feature_value_barplot ]
+      gapped_4mer_analysis:
+        dataset: combined_dataset
+        encoding: gapped_4mer_encoding
+        reports: [ feature_value_barplot ]
