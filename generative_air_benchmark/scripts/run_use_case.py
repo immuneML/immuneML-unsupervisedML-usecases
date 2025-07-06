@@ -57,13 +57,13 @@ def main():
     run_immuneML(specification_path=f"{configs_dir}/01_train.yaml",
                  result_path=f"{output_dir}/01_train/")
 
-    # run filtering
-    run_immuneML(specification_path=f"{configs_dir}/02_filter.yaml",
-                 result_path=f"{output_dir}/02_filter/")
-
-    # run feature comparison reports
-    run_immuneML(specification_path=f"{configs_dir}/03_exploratory_analysis_feature_comparison.yaml",
-                 result_path=f"{output_dir}/03_feature_comparison/")
+    # # run filtering
+    # run_immuneML(specification_path=f"{configs_dir}/02_filter.yaml",
+    #              result_path=f"{output_dir}/02_filter/")
+    #
+    # # run feature comparison reports
+    # run_immuneML(specification_path=f"{configs_dir}/03_exploratory_analysis_feature_comparison.yaml",
+    #              result_path=f"{output_dir}/03_feature_comparison/")
 
     # run feature value bar plot reports
     run_immuneML(specification_path=f"{configs_dir}/04_exploratory_analyses.yaml",
