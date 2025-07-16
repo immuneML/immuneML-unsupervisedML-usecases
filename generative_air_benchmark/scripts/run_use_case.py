@@ -31,16 +31,11 @@ def get_train_and_test_ids(input_data_path, output_path, training_percentage=0.7
         train_ids.extend(sequence_ids[:split_idx])
         test_ids.extend(sequence_ids[split_idx:])
 
-    # shuffle the train and test ids lists
-    train_ids = pd.Series(train_ids).sample(frac=1, random_state=42).tolist()
-    test_ids = pd.Series(test_ids).sample(frac=1, random_state=42).tolist()
     train_ids = pd.DataFrame(train_ids, columns=["example_id"])
     test_ids = pd.DataFrame(test_ids, columns=["example_id"])
     train_ids.to_csv(Path(f"{output_path}/train_ids.csv"), index=False)
     test_ids.to_csv(Path(f"{output_path}/test_ids.csv"), index=False)
 
-    # shuffle the input data frame
-    input_data_df = input_data_df.sample(frac=1, random_state=42).reset_index(drop=True)
     input_data_df.to_csv(Path(f"{output_path}/full_simulated_dataset.tsv"), sep="\t", index=False)
 
 
