@@ -21,7 +21,7 @@ definitions:
         num_epochs: 20
         hidden_size: 1024
         learning_rate: 0.001
-        batch_size: 100
+        batch_size: 1000
         embed_size: 256
         temperature: 1
         num_layers: 3
@@ -32,9 +32,9 @@ definitions:
         locus: beta
         sequence_type: amino_acid
         num_epochs: 20
-        hidden_size: 64
+        hidden_size: 512
         learning_rate: 0.001
-        batch_size: 100
+        batch_size: 1000
         embed_size: 128
         temperature: 1
         num_layers: 3
@@ -42,7 +42,7 @@ definitions:
         region_type: IMGT_CDR3
     VAE:
       SimpleVAE:
-        batch_size: 100
+        batch_size: 1000
         beta: 0.75
         cdr3_embed_dim: 21
         locus: beta
@@ -63,7 +63,7 @@ instructions:
     export_combined_dataset: True
     dataset: dataset
     methods: [ PWM, VAE, LSTM, LSTM_small ]
-    gen_examples_count: 1500
+    gen_examples_count: 6000
     number_of_processes: 1
     split_strategy: MANUAL
     split_config:

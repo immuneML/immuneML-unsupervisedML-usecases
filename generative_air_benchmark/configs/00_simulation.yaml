@@ -43,7 +43,7 @@ definitions:
             default_model_name: humanTRB
             type: OLGA
           is_noise: false
-          number_of_examples: 1000
+          number_of_examples: 4000
           signals:
             signal1: 1
         sim_item_2:
@@ -51,7 +51,7 @@ definitions:
             default_model_name: humanTRB
             type: OLGA
           is_noise: false
-          number_of_examples: 1000
+          number_of_examples: 4000
           signals:
             signal2: 1
         sim_item_3:
@@ -59,7 +59,7 @@ definitions:
             default_model_name: humanTRB
             type: OLGA
           is_noise: false
-          number_of_examples: 1000
+          number_of_examples: 4000
           signals:
             signal3: 1
         sim_item_4:
@@ -67,7 +67,7 @@ definitions:
             default_model_name: humanTRB
             type: OLGA
           is_noise: false
-          number_of_examples: 1000
+          number_of_examples: 4000
           signals:
             signal4: 1
         sim_item_5:
@@ -75,7 +75,7 @@ definitions:
             default_model_name: humanTRB
             type: OLGA
           is_noise: false
-          number_of_examples: 1000
+          number_of_examples: 4000
           signals:
             signal5: 1
 
