@@ -19,19 +19,6 @@ definitions:
         locus: beta
         sequence_type: amino_acid
         num_epochs: 20
-        hidden_size: 1024
-        learning_rate: 0.001
-        batch_size: 1000
-        embed_size: 256
-        temperature: 1
-        num_layers: 3
-        device: cpu
-        region_type: IMGT_CDR3
-    LSTM_small:
-      SimpleLSTM:
-        locus: beta
-        sequence_type: amino_acid
-        num_epochs: 20
         hidden_size: 512
         learning_rate: 0.001
         batch_size: 1000
@@ -62,7 +49,7 @@ instructions:
     type: TrainGenModel
     export_combined_dataset: True
     dataset: dataset
-    methods: [ PWM, VAE, LSTM, LSTM_small ]
+    methods: [ PWM, VAE, LSTM ]
     gen_examples_count: 6000
     number_of_processes: 1
     split_strategy: MANUAL
