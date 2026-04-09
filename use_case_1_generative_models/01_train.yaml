@@ -1,0 +1,85 @@
+definitions:
+  datasets:
+    dataset:
+      format: AIRR
+      params:
+        import_empty_aa_sequences: false
+        import_empty_nt_sequences: true
+        import_illegal_characters: false
+        import_out_of_frame: false
+        import_productive: true
+        import_unknown_productivity: true
+        import_with_stop_codon: false
+        is_repertoire: false
+        label_columns: null
+        paired: false
+        path: 00_simulation/full_simulated_dataset.tsv
+        region_type: IMGT_CDR3
+        result_path: 01_train/datasets/dataset
+        separator: "\t"
+  encodings: {}
+  example_weightings: {}
+  ml_methods:
+    LSTM:
+      SimpleLSTM:
+        batch_size: 1000
+        device: cpu
+        embed_size: 128
+        hidden_size: 512
+        learning_rate: 0.001
+        locus: beta
+        num_epochs: 20
+        num_layers: 3
+        region_type: IMGT_CDR3
+        seed: null
+        sequence_type: amino_acid
+        temperature: 1
+    PWM:
+      PWM:
+        locus: beta
+        region_type: IMGT_CDR3
+        sequence_type: amino_acid
+    VAE:
+      SimpleVAE:
+        batch_size: 1000
+        beta: 0.75
+        cdr3_embed_dim: 21
+        device: cpu
+        iter_count_prob_estimation: 5
+        j_gene_embed_dim: 13
+        latent_dim: 30
+        learning_rate: 0.001
+        linear_nodes_count: 256
+        locus: beta
+        num_epochs: 500
+        patience: 20
+        pretrains: 5
+        seed: null
+        v_gene_embed_dim: 30
+        validation_split: 0.1
+        warmup_epochs: 20
+  motifs: {}
+  preprocessing_sequences: {}
+  reports: {}
+  signals: {}
+  simulations: {}
+instructions:
+  gen_models:
+    dataset: dataset
+    export_combined_dataset: true
+    export_generated_dataset: true
+    gen_examples_count: 6000
+    methods:
+    - PWM
+    - VAE
+    - LSTM
+    number_of_processes: 1
+    reports: []
+    split_config:
+      test_metadata_path: 00_simulation/test_ids.csv
+      train_metadata_path: 00_simulation/train_ids.csv
+    split_strategy: MANUAL
+    training_percentage: 0.7
+    type: TrainGenModel
+output:
+  format: HTML

@@ -1,0 +1,116 @@
+definitions:
+  datasets:
+    combined_dataset:
+      format: AIRR
+      params:
+        dataset_file: /Users/milenpa/PycharmProjects/BMIimmuneML/analyses/gen_model_use_case/additional_exp_analyses/dataset/exported_combined_dataset/combined_gen_models_dataset.yaml
+        import_empty_aa_sequences: false
+        import_empty_nt_sequences: true
+        import_illegal_characters: true
+        import_out_of_frame: false
+        import_productive: true
+        import_unknown_productivity: true
+        import_with_stop_codon: false
+        is_repertoire: false
+        label_columns: null
+        paired: false
+        path: /Users/milenpa/PycharmProjects/BMIimmuneML/analyses/gen_model_use_case/additional_exp_analyses/dataset/exported_combined_dataset/combined_gen_models_dataset.tsv
+        region_type: IMGT_CDR3
+        result_path: /Users/milenpa/PycharmProjects/BMIimmuneML/analyses/gen_model_use_case/additional_exp_analyses/dataset/exported_combined_dataset
+        separator: "\t"
+  encodings:
+    4mer_encoding:
+      KmerFrequency:
+        k: 4
+        k_left: 1
+        k_right: 1
+        max_gap: 0
+        min_gap: 0
+        name: 4mer_encoding
+        normalization_type: relative_frequency
+        reads: unique
+        region_type: imgt_cdr3
+        scale_to_unit_variance: false
+        scale_to_zero_mean: false
+        sequence_encoding: continuous_kmer
+        sequence_type: amino_acid
+    gapped_3mer_encoding:
+      KmerFrequency:
+        k: 3
+        k_left: 2
+        k_right: 1
+        max_gap: 2
+        min_gap: 2
+        name: gapped_3mer_encoding
+        normalization_type: relative_frequency
+        reads: unique
+        region_type: imgt_cdr3
+        scale_to_unit_variance: false
+        scale_to_zero_mean: false
+        sequence_encoding: gapped_kmer
+        sequence_type: amino_acid
+  example_weightings: {}
+  ml_methods: {}
+  motifs: {}
+  preprocessing_sequences: {}
+  reports:
+    dim_red_kernel_pca:
+      DimensionalityReduction:
+        dim_red_method:
+          KernelPCA:
+            kernel: rbf
+            n_components: 2
+        labels:
+        - data_origin
+        name: dim_red_kernel_pca
+    dim_red_pca:
+      DimensionalityReduction:
+        dim_red_method:
+          PCA:
+            n_components: 2
+        labels:
+        - data_origin
+        name: dim_red_pca
+    dim_red_umap:
+      DimensionalityReduction:
+        dim_red_method:
+          UMAP:
+            n_components: 2
+        labels:
+        - data_origin
+        name: dim_red_umap
+    seq_len_dist:
+      SequenceLengthDistribution:
+        label: data_origin
+        name: seq_len_dist
+        plot_frequencies: true
+        region_type: IMGT_CDR3
+        sequence_type: amino_acid
+        split_by_label: true
+  signals: {}
+  simulations: {}
+instructions:
+  data_reports:
+    analyses:
+      4mer_analysis:
+        dataset: combined_dataset
+        encoding: 4mer_encoding
+        reports:
+        - dim_red_pca
+        - dim_red_umap
+        - dim_red_kernel_pca
+      gapped_3mer_analysis:
+        dataset: combined_dataset
+        encoding: gapped_3mer_encoding
+        reports:
+        - dim_red_pca
+        - dim_red_umap
+        - dim_red_kernel_pca
+      sequence_analysis:
+        dataset: combined_dataset
+        reports:
+        - seq_len_dist
+    number_of_processes: 8
+    type: ExploratoryAnalysis
+output:
+  format: HTML

@@ -1,0 +1,145 @@
+definitions:
+  datasets: {}
+  encodings: {}
+  example_weightings: {}
+  ml_methods: {}
+  motifs:
+    motif1:
+      seed: DEQ
+    motif2:
+      seed: GQET
+    motif3:
+      seed: NQPQH
+    motif4:
+      max_gap: 2
+      min_gap: 2
+      seed: AS/G
+    motif5:
+      max_gap: 1
+      min_gap: 1
+      seed: SS/GT
+  preprocessing_sequences: {}
+  reports: {}
+  signals:
+    signal1:
+      motifs:
+      - motif1
+    signal2:
+      motifs:
+      - motif2
+    signal3:
+      motifs:
+      - motif3
+    signal4:
+      motifs:
+      - motif4
+    signal5:
+      motifs:
+      - motif5
+  simulations:
+    sim1:
+      implanting_scaling_factor: 1
+      is_repertoire: false
+      keep_p_gen_dist: false
+      p_gen_bin_count: -1
+      paired: false
+      remove_seqs_with_signals: true
+      sequence_type: amino_acid
+      sim_items:
+        sim_item_1:
+          default_clonal_frequency: null
+          false_negative_prob_in_receptors: 0
+          false_positive_prob_in_receptors: 0
+          generative_model:
+            default_model_name: humanTRB
+            type: OLGA
+          immune_events: {}
+          is_noise: false
+          number_of_examples: 4000
+          receptors_in_repertoire_count: null
+          seed: null
+          sequence_len_limits:
+            max: -1
+            min: -1
+          signals:
+            signal1: 1
+        sim_item_2:
+          default_clonal_frequency: null
+          false_negative_prob_in_receptors: 0
+          false_positive_prob_in_receptors: 0
+          generative_model:
+            default_model_name: humanTRB
+            type: OLGA
+          immune_events: {}
+          is_noise: false
+          number_of_examples: 4000
+          receptors_in_repertoire_count: null
+          seed: null
+          sequence_len_limits:
+            max: -1
+            min: -1
+          signals:
+            signal2: 1
+        sim_item_3:
+          default_clonal_frequency: null
+          false_negative_prob_in_receptors: 0
+          false_positive_prob_in_receptors: 0
+          generative_model:
+            default_model_name: humanTRB
+            type: OLGA
+          immune_events: {}
+          is_noise: false
+          number_of_examples: 4000
+          receptors_in_repertoire_count: null
+          seed: null
+          sequence_len_limits:
+            max: -1
+            min: -1
+          signals:
+            signal3: 1
+        sim_item_4:
+          default_clonal_frequency: null
+          false_negative_prob_in_receptors: 0
+          false_positive_prob_in_receptors: 0
+          generative_model:
+            default_model_name: humanTRB
+            type: OLGA
+          immune_events: {}
+          is_noise: false
+          number_of_examples: 4000
+          receptors_in_repertoire_count: null
+          seed: null
+          sequence_len_limits:
+            max: -1
+            min: -1
+          signals:
+            signal4: 1
+        sim_item_5:
+          default_clonal_frequency: null
+          false_negative_prob_in_receptors: 0
+          false_positive_prob_in_receptors: 0
+          generative_model:
+            default_model_name: humanTRB
+            type: OLGA
+          immune_events: {}
+          is_noise: false
+          number_of_examples: 4000
+          receptors_in_repertoire_count: null
+          seed: null
+          sequence_len_limits:
+            max: -1
+            min: -1
+          signals:
+            signal5: 1
+      simulation_strategy: RejectionSampling
+      species: human
+instructions:
+  dataset:
+    export_p_gens: false
+    max_iterations: 5000
+    number_of_processes: 4
+    sequence_batch_size: 1000
+    simulation: sim1
+    type: LigoSim
+output:
+  format: HTML

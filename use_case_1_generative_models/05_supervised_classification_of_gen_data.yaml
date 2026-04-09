@@ -1,0 +1,124 @@
+definitions:
+  datasets:
+    subset_combined_dataset_filtered:
+      format: AIRR
+      params:
+        dataset_file: dataset_without_train/filter_dataset/combined_dataset/AIRR/subset_combined_dataset_filtered.yaml
+        import_empty_aa_sequences: false
+        import_empty_nt_sequences: true
+        import_illegal_characters: true
+        import_out_of_frame: false
+        import_productive: true
+        import_unknown_productivity: true
+        import_with_stop_codon: false
+        is_repertoire: false
+        label_columns: null
+        paired: false
+        path: dataset_without_train/filter_dataset/combined_dataset/AIRR/subset_combined_dataset_filtered.tsv
+        region_type: IMGT_CDR3
+        result_path: dataset_without_train/filter_dataset/combined_dataset/AIRR
+        separator: "\t"
+  encodings:
+    3mer_encoding:
+      KmerFrequency:
+        k: 3
+        k_left: 1
+        k_right: 1
+        max_gap: 0
+        min_gap: 0
+        name: 3mer_encoding
+        normalization_type: l2
+        reads: unique
+        region_type: imgt_cdr3
+        scale_to_unit_variance: false
+        scale_to_zero_mean: false
+        sequence_encoding: continuous_kmer
+        sequence_type: amino_acid
+    4mer_encoding:
+      KmerFrequency:
+        k: 4
+        k_left: 1
+        k_right: 1
+        max_gap: 0
+        min_gap: 0
+        name: 4mer_encoding
+        normalization_type: l2
+        reads: unique
+        region_type: imgt_cdr3
+        scale_to_unit_variance: false
+        scale_to_zero_mean: false
+        sequence_encoding: continuous_kmer
+        sequence_type: amino_acid
+  example_weightings: {}
+  ml_methods:
+    log_reg:
+      LogisticRegression:
+        C:
+        - 0.01
+        - 0.1
+        - 1
+        - 10
+        - 100
+        penalty: l1
+      model_selection_cv: true
+      model_selection_n_folds: 3
+  motifs: {}
+  preprocessing_sequences: {}
+  reports:
+    coefficients:
+      Coefficients:
+        coeffs_to_plot:
+        - n_largest
+        coefs_to_plot:
+        - n_largest
+        n_largest:
+        - 30
+        name: coefficients
+    conf_matrix:
+      ConfusionMatrix:
+        name: conf_matrix
+    roc_curve_summary:
+      ROCCurveSummary:
+        name: roc_curve_summary
+  signals: {}
+  simulations: {}
+instructions:
+  classification:
+    assessment:
+      reports:
+        models:
+        - coefficients
+        - conf_matrix
+      split_count: 3
+      split_strategy: k_fold
+      training_percentage: 0.7
+    dataset: subset_combined_dataset_filtered
+    example_weighting: null
+    export_all_ml_settings: false
+    labels:
+    - data_origin
+    metrics:
+    - auc_ovo
+    - auc_ovr
+    number_of_processes: 8
+    optimization_metric: balanced_accuracy
+    refit_optimal_model: false
+    region_type: IMGT_CDR3
+    reports:
+    - roc_curve_summary
+    selection:
+      split_count: 3
+      split_strategy: k_fold
+      training_percentage: 0.7
+    sequence_type: AMINO_ACID
+    settings:
+    - encoding: 3mer_encoding
+      ml_method: log_reg
+      preprocessing: null
+    - encoding: 4mer_encoding
+      ml_method: log_reg
+      preprocessing: null
+    strategy: GridSearch
+    type: TrainMLModel
+output:
+  format: HTML

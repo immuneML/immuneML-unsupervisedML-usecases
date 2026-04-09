@@ -1,0 +1,47 @@
+definitions:
+  datasets:
+    combined_dataset:
+      format: AIRR
+      params:
+        dataset_file: /Users/milenpa/PycharmProjects/BMIimmuneML/analyses/gen_model_use_case/additional_exp_analyses/dataset/exported_combined_dataset/combined_gen_models_dataset.yaml
+        import_empty_aa_sequences: false
+        import_empty_nt_sequences: true
+        import_illegal_characters: true
+        import_out_of_frame: false
+        import_productive: true
+        import_unknown_productivity: true
+        import_with_stop_codon: false
+        is_repertoire: false
+        label_columns: null
+        paired: false
+        path: /Users/milenpa/PycharmProjects/BMIimmuneML/analyses/gen_model_use_case/additional_exp_analyses/dataset/exported_combined_dataset/combined_gen_models_dataset.tsv
+        region_type: IMGT_CDR3
+        result_path: /Users/milenpa/PycharmProjects/BMIimmuneML/analyses/gen_model_use_case/additional_exp_analyses/dataset/exported_combined_dataset
+        separator: "\t"
+  encodings: {}
+  example_weightings: {}
+  ml_methods: {}
+  motifs: {}
+  preprocessing_sequences:
+    remove_train_seqs:
+    - remove_train:
+        MetadataFilter:
+          column: data_origin
+          type: IN
+          values:
+          - PWM
+          - VAE
+          - LSTM
+          - original_test
+  reports: {}
+  signals: {}
+  simulations: {}
+instructions:
+  filter_dataset:
+    datasets:
+    - combined_dataset
+    number_of_processes: 4
+    preprocessing_sequence: remove_train_seqs
+    type: DatasetExport
+output:
+  format: HTML
