@@ -1,0 +1,16 @@
+definitions:
+  datasets:
+    d1:
+      format: AIRR
+      params:
+        path: simulated_dataset/my_dataset_export_instruction/my_random_dataset/AIRR/my_random_dataset.tsv
+        dataset_file: simulated_dataset/my_dataset_export_instruction/my_random_dataset/AIRR/my_random_dataset.yaml
+        is_repertoire: false
+instructions:
+  split_dataset1:
+    type: SplitDataset
+    dataset: d1
+    split_config:
+      split_count: 1
+      split_strategy: random
+      training_percentage: 0.5

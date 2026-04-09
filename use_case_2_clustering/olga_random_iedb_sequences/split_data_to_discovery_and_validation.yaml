@@ -1,0 +1,24 @@
+definitions:
+  datasets:
+    d1:
+      format: AIRR
+      params:
+        path: iedb_random_olga_subset.tsv
+        is_repertoire: false
+        column_mapping:
+          'Type.1': 'locus'
+          'Name': epitope_name
+          'Source Molecule': 'epitope_source_molecule'
+          'Source Organism': 'epitope_source_organism'
+          'MHC Allele Names': 'mhc_allele_names'
+          'Calculated V Gene': 'v_call'
+          'Calculated J Gene': 'j_call'
+          'Junction Calculated': 'junction_aa'
+instructions:
+  split_dataset1:
+    type: SplitDataset
+    dataset: d1
+    split_config:
+      split_count: 1
+      split_strategy: random
+      training_percentage: 0.5
