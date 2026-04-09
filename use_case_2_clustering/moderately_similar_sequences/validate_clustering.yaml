@@ -1,0 +1,46 @@
+definitions:
+  datasets:
+    d1:
+      format: AIRR
+      params:
+        is_repertoire: False
+        organism: human
+        paired: false
+        path: data/split_dataset1/test/subset_d1_test.tsv
+        dataset_file: data/split_dataset1/test/subset_d1_test.yaml
+  reports:
+    dim_reduction_plot: # this is how we will visualize the data
+      DimensionalityReduction:
+        dim_red_method:
+          KernelPCA:
+            n_components: 2
+        label: motif
+    external_label_metric_summary: ExternalLabelMetricHeatmap
+    cluster_vis:
+      ClusteringVisualization: # plot a scatter plot of dim-reduced data and color the points by cluster assignments
+        dim_red_method:
+          KernelPCA: # here we can use any dimensionality reduction method supported in immuneML (see docs)
+            n_components: 2
+            kernel: rbf
+    external_labels_summary: # show heatmap of how cluster assignments correspond to external labels
+      ExternalLabelClusterSummary:
+        external_labels: [ motif ]
+instructions:
+  validate_clustering:
+    type: ValidateClustering
+    clustering_config_path: ''
+    dataset: d1
+    labels: # here we list external labels we want to compare against if available
+      - motif
+    metrics: # list metrics we want to use, both internal, and external (if labels are available)
+      - adjusted_mutual_info_score
+      - adjusted_rand_score
+      - silhouette_score
+      - calinski_harabasz_score
+    number_of_processes: 32
+    reports:
+      - dim_reduction_plot
+      - cluster_vis
+      - external_labels_summary
+      - external_label_metric_summary
+    validation_type: ['method_based', 'result_based']
