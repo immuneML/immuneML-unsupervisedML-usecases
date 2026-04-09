@@ -1,0 +1,39 @@
+definitions:
+  datasets:
+    d1:
+      format: AIRR
+      params:
+        dataset_file: bcr_filtered/filter_inst/d1/AIRR/d1.yaml
+        import_empty_aa_sequences: false
+        import_empty_nt_sequences: true
+        import_illegal_characters: false
+        import_out_of_frame: false
+        import_productive: true
+        import_unknown_productivity: true
+        import_with_stop_codon: false
+        is_repertoire: true
+        label_columns: null
+        metadata_file: bcr_filtered/filter_inst/d1/AIRR/d1.csv
+        paired: false
+        path: bcr_filtered/filter_inst/d1/AIRR
+        region_type: IMGT_CDR3
+        result_path: bcr_filtered/filter_inst/d1/AIRR
+        separator: "\t"
+  encodings: {}
+  example_weightings: {}
+  ml_methods: {}
+  motifs: {}
+  preprocessing_sequences: {}
+  reports: {}
+  signals: {}
+  simulations: {}
+instructions:
+  split_dataset1:
+    dataset: d1
+    split_config:
+      split_count: 1
+      split_strategy: random
+      training_percentage: 0.5
+    type: SplitDataset
+output:
+  format: HTML

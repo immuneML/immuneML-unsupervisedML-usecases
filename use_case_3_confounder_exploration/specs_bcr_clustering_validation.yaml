@@ -1,0 +1,60 @@
+definitions:
+  datasets:
+    val_dataset:
+      format: AIRR
+      params:
+        dataset_file: split_bcr_dataset/split_dataset1/test/d1_test.yaml
+        import_empty_aa_sequences: false
+        import_empty_nt_sequences: true
+        import_illegal_characters: false
+        import_out_of_frame: false
+        import_productive: true
+        import_unknown_productivity: true
+        import_with_stop_codon: false
+        is_repertoire: true
+        label_columns: null
+        metadata_file: split_bcr_dataset/split_dataset1/test/d1_test.csv
+        paired: false
+        path: split_bcr_dataset/split_dataset1/test
+        region_type: IMGT_CDR3
+        result_path: split_bcr_dataset/split_dataset1/test
+        separator: "\t"
+  encodings: {}
+  example_weightings: {}
+  ml_methods: {}
+  motifs: {}
+  preprocessing_sequences: {}
+  reports:
+    cluster_overlap:
+      ExternalLabelClusterSummary:
+        external_labels:
+        - Diagnosis1
+        - Batch
+        name: cluster_overlap
+    cluster_vis:
+      ClusteringVisualization:
+        name: cluster_vis
+  signals: {}
+  simulations: {}
+instructions:
+  validate_clustering:
+    clustering_config_path: bcr_filtered_clustering_discovery/cluster_analysis/refitted_best_settings/kmer3_kernel_pca_kmeans14/kmer3_kernel_pca_kmeans14.zip
+    dataset: val_dataset
+    labels:
+    - Batch
+    - Diagnosis1
+    metrics:
+    - adjusted_rand_score
+    - silhouette_score
+    number_of_processes: 4
+    region_type: IMGT_CDR3
+    reports:
+    - cluster_vis
+    - cluster_overlap
+    sequence_type: AMINO_ACID
+    type: ValidateClustering
+    validation_type:
+    - method_based
+    - result_based
+output:
+  format: HTML

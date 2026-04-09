@@ -1,0 +1,188 @@
+definitions:
+  datasets:
+    d1:
+      format: AIRR
+      params:
+        dataset_file: bcr_filtered/filter_inst/d1/AIRR/d1.yaml
+        import_empty_aa_sequences: false
+        import_empty_nt_sequences: true
+        import_illegal_characters: false
+        import_out_of_frame: false
+        import_productive: true
+        import_unknown_productivity: true
+        import_with_stop_codon: false
+        is_repertoire: true
+        label_columns: null
+        metadata_file: bcr_filtered/filter_inst/d1/AIRR/d1.csv
+        paired: false
+        path: bcr_filtered/filter_inst/d1/AIRR
+        region_type: IMGT_CDR3
+        result_path: bcr_filtered/filter_inst/d1/AIRR
+        separator: "\t"
+  encodings:
+    kmer3:
+      KmerFrequency:
+        k: 3
+        k_left: 1
+        k_right: 1
+        max_gap: 0
+        min_gap: 0
+        name: kmer3
+        normalization_type: relative_frequency
+        reads: unique
+        region_type: imgt_cdr3
+        scale_to_unit_variance: false
+        scale_to_zero_mean: false
+        sequence_encoding: CONTINUOUS_KMER
+        sequence_type: amino_acid
+    kmer3_pos:
+      KmerFrequency:
+        k: 3
+        k_left: 1
+        k_right: 1
+        max_gap: 0
+        min_gap: 0
+        name: kmer3_pos
+        normalization_type: relative_frequency
+        reads: unique
+        region_type: imgt_cdr3
+        scale_to_unit_variance: false
+        scale_to_zero_mean: false
+        sequence_encoding: IMGT_CONTINUOUS_KMER
+        sequence_type: amino_acid
+    kmer3_pos_standardized:
+      KmerFrequency:
+        k: 3
+        k_left: 1
+        k_right: 1
+        max_gap: 0
+        min_gap: 0
+        name: kmer3_pos_standardized
+        normalization_type: relative_frequency
+        reads: unique
+        region_type: imgt_cdr3
+        scale_to_unit_variance: true
+        scale_to_zero_mean: true
+        sequence_encoding: IMGT_CONTINUOUS_KMER
+        sequence_type: amino_acid
+    kmer3_standardized:
+      KmerFrequency:
+        k: 3
+        k_left: 1
+        k_right: 1
+        max_gap: 0
+        min_gap: 0
+        name: kmer3_standardized
+        normalization_type: relative_frequency
+        reads: unique
+        region_type: imgt_cdr3
+        scale_to_unit_variance: true
+        scale_to_zero_mean: true
+        sequence_encoding: CONTINUOUS_KMER
+        sequence_type: amino_acid
+  example_weightings: {}
+  ml_methods: {}
+  motifs: {}
+  preprocessing_sequences: {}
+  reports:
+    dim_reduction_pca:
+      DimensionalityReduction:
+        dim_red_method:
+          KernelPCA:
+            kernel: rbf
+            n_components: 2
+        labels:
+        - Diagnosis1
+        - Batch
+        - Sex
+        - Age
+        name: dim_reduction_pca
+    dim_reduction_umap:
+      DimensionalityReduction:
+        dim_red_method:
+          UMAP:
+            n_components: 2
+            n_neighbors: 10
+        labels:
+        - Diagnosis1
+        - Batch
+        - Sex
+        - Age
+        name: dim_reduction_umap
+    feature_dist_plot:
+      FeatureDistribution:
+        color_grouping_label: Batch
+        mode: auto
+        name: feature_dist_plot
+        plot_all_features: false
+        plot_top_n: 100
+        row_grouping_label: Diagnosis1
+    gene_dist:
+      VJGeneDistribution:
+        is_sequence_label: false
+        label: Diagnosis1
+        name: gene_dist
+        show_joint_dist: false
+        split_by_label: true
+    label_dist:
+      LabelDist:
+        labels:
+        - Batch
+        - Age
+        - Sex
+        - Diagnosis1
+        - Diagnosis2
+        name: label_dist
+    label_overlap_batch_diagnosis1:
+      LabelOverlap:
+        column_label: Diagnosis1
+        name: label_overlap_batch_diagnosis1
+        row_label: Batch
+    label_overlap_batch_diagnosis2:
+      LabelOverlap:
+        column_label: Diagnosis2
+        name: label_overlap_batch_diagnosis2
+        row_label: Batch
+    label_overlap_sex_diagnosis1:
+      LabelOverlap:
+        column_label: Diagnosis1
+        name: label_overlap_sex_diagnosis1
+        row_label: Sex
+    label_overlap_sex_diagnosis2:
+      LabelOverlap:
+        column_label: Diagnosis2
+        name: label_overlap_sex_diagnosis2
+        row_label: Sex
+    repertoire_clonotype_summary:
+      RepertoireClonotypeSummary:
+        color_label: Batch
+        facet_label: Diagnosis1
+        name: repertoire_clonotype_summary
+        number_of_processes: 1
+    seq_length_distribution:
+      SequenceLengthDistribution:
+        label: Diagnosis1
+        name: seq_length_distribution
+        plot_frequencies: true
+        region_type: imgt_cdr3
+        sequence_type: amino_acid
+        split_by_label: true
+    shannon_diversity:
+      ShannonDiversityOverview:
+        color_label: Batch
+        facet_row_label: Diagnosis1
+        name: shannon_diversity
+  signals: {}
+  simulations: {}
+instructions:
+  initial_exp_analysis:
+    analyses:
+      standardized_encoded_data_analysis4:
+        dataset: d1
+        encoding: kmer3_pos_standardized
+        reports:
+        - dim_reduction_pca
+    number_of_processes: 8
+    type: ExploratoryAnalysis
+output:
+  format: HTML

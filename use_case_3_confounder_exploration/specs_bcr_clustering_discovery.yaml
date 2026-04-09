@@ -1,0 +1,149 @@
+definitions:
+  datasets:
+    d1:
+      format: AIRR
+      params:
+        dataset_file: split_bcr_dataset/split_dataset1/train/d1_train.yaml
+        import_empty_aa_sequences: false
+        import_empty_nt_sequences: true
+        import_illegal_characters: false
+        import_out_of_frame: false
+        import_productive: true
+        import_unknown_productivity: true
+        import_with_stop_codon: false
+        is_repertoire: true
+        label_columns: null
+        metadata_file: split_bcr_dataset/split_dataset1/train/d1_train.csv
+        paired: false
+        path: split_bcr_dataset/split_dataset1/train
+        region_type: IMGT_CDR3
+        result_path: split_bcr_dataset/split_dataset1/train
+        separator: "\t"
+  encodings:
+    kmer3:
+      KmerFrequency:
+        k: 3
+        k_left: 1
+        k_right: 1
+        max_gap: 0
+        min_gap: 0
+        name: kmer3
+        normalization_type: relative_frequency
+        reads: unique
+        region_type: imgt_cdr3
+        scale_to_unit_variance: true
+        scale_to_zero_mean: true
+        sequence_encoding: CONTINUOUS_KMER
+        sequence_type: amino_acid
+    kmer3_pos:
+      KmerFrequency:
+        k: 3
+        k_left: 1
+        k_right: 1
+        max_gap: 0
+        min_gap: 0
+        name: kmer3_pos
+        normalization_type: relative_frequency
+        reads: unique
+        region_type: imgt_cdr3
+        scale_to_unit_variance: true
+        scale_to_zero_mean: true
+        sequence_encoding: IMGT_CONTINUOUS_KMER
+        sequence_type: amino_acid
+  example_weightings: {}
+  ml_methods:
+    kernel_pca:
+      KernelPCA:
+        kernel: rbf
+        n_components: 2
+    kmeans14:
+      KMeans:
+        n_clusters: 14
+    kmeans2:
+      KMeans:
+        n_clusters: 2
+    kmeans3:
+      KMeans:
+        n_clusters: 3
+    kmeans30:
+      KMeans:
+        n_clusters: 30
+  motifs: {}
+  preprocessing_sequences: {}
+  reports:
+    cluster_vis:
+      ClusteringVisualization:
+        name: cluster_vis
+    external_label_heatmap:
+      ExternalLabelMetricHeatmap:
+        name: external_label_heatmap
+    external_labels:
+      ExternalLabelClusterSummary:
+        external_labels:
+        - Diagnosis1
+        - Diagnosis2
+        - Batch
+        - Sex
+        - Age
+        name: external_labels
+  signals: {}
+  simulations: {}
+instructions:
+  cluster_analysis:
+    clustering_settings:
+    - dim_reduction: kernel_pca
+      encoding: kmer3
+      method: kmeans14
+    - dim_reduction: kernel_pca
+      encoding: kmer3
+      method: kmeans30
+    - dim_reduction: kernel_pca
+      encoding: kmer3
+      method: kmeans2
+    - dim_reduction: kernel_pca
+      encoding: kmer3
+      method: kmeans3
+    - dim_reduction: kernel_pca
+      encoding: kmer3_pos
+      method: kmeans14
+    - dim_reduction: kernel_pca
+      encoding: kmer3_pos
+      method: kmeans30
+    - dim_reduction: kernel_pca
+      encoding: kmer3_pos
+      method: kmeans2
+    - dim_reduction: kernel_pca
+      encoding: kmer3_pos
+      method: kmeans3
+    dataset: d1
+    labels:
+    - Diagnosis1
+    - Diagnosis2
+    - Batch
+    - Sex
+    - Age
+    metrics:
+    - adjusted_rand_score
+    - adjusted_mutual_info_score
+    - silhouette_score
+    - v_measure_score
+    - homogeneity_score
+    - completeness_score
+    - calinski_harabasz_score
+    number_of_processes: 8
+    region_type: IMGT_CDR3
+    reports:
+    - cluster_vis
+    - external_labels
+    - external_label_heatmap
+    sample_config:
+      percentage: 0.8
+      random_seed: 5
+      split_count: 5
+    sequence_type: AMINO_ACID
+    stability_config:
+      random_seed: 5
+      split_count: 5
+    type: Clustering
+output:
+  format: HTML

@@ -1,0 +1,44 @@
+definitions:
+  datasets:
+    d1:
+      format: AIRR
+      params:
+        import_empty_aa_sequences: false
+        import_empty_nt_sequences: true
+        import_illegal_characters: false
+        import_out_of_frame: false
+        import_productive: true
+        import_unknown_productivity: true
+        import_with_stop_codon: false
+        is_repertoire: true
+        label_columns: null
+        metadata_file: metadata_bcr.csv
+        paired: false
+        path: bcr/
+        region_type: IMGT_CDR3
+        separator: "\t"
+  encodings: {}
+  example_weightings: {}
+  ml_methods: {}
+  motifs: {}
+  preprocessing_sequences:
+    filter_valid_chains:
+    - valid_chain_filter:
+        ChainRepertoireFilter:
+          keep_chains:
+          - IGH
+          - IGK
+          - IGL
+          remove_only_sequences: true
+  reports: {}
+  signals: {}
+  simulations: {}
+instructions:
+  filter_inst:
+    datasets:
+    - d1
+    number_of_processes: 8
+    preprocessing_sequence: filter_valid_chains
+    type: DatasetExport
+output:
+  format: HTML
