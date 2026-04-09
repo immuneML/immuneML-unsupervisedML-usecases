@@ -1,0 +1,170 @@
+definitions:
+  datasets:
+    d1:
+      format: AIRR
+      params:
+        is_repertoire: False
+        organism: human
+        paired: false
+        path: data/split_dataset1/train/subset_d1_train.tsv
+        dataset_file: data/split_dataset1/train/subset_d1_train.yaml
+  encodings:
+    tcr_bert: TCRBert
+    tcr_dist:
+      TCRdist:
+        cores: 32
+        cdr3_only: true
+    prot_5: ProtT5
+    emsc: ESMC
+    kmer: KmerFrequency
+  ml_methods:
+    kmeans15:
+      KMeans:
+        n_clusters: 15
+    kmeans100:
+      KMeans:
+        n_clusters: 100
+    kmeans500:
+      KMeans:
+        n_clusters: 500
+    kmeans1000:
+      KMeans:
+        n_clusters: 1000
+    kmeans3500:
+      KMeans:
+        n_clusters: 3500
+    pca:
+      PCA:
+        n_components: 2
+    hierarchical_15:
+      AgglomerativeClustering:
+        n_clusters: 15
+        linkage: 'complete'
+        metric: "precomputed"
+    hierarchical_100:
+      AgglomerativeClustering:
+        n_clusters: 100
+        linkage: 'complete'
+        metric: "precomputed"
+    hierarchical_500:
+      AgglomerativeClustering:
+        n_clusters: 500
+        linkage: 'complete'
+        metric: "precomputed"
+    hierarchical_1000:
+      AgglomerativeClustering:
+        n_clusters: 1000
+        linkage: 'complete'
+        metric: "precomputed"
+    hierarchical_3500:
+      AgglomerativeClustering:
+        n_clusters: 3500
+        linkage: 'complete'
+        metric: "precomputed"
+  reports:
+    dim_reduction_plot: # this is how we will visualize the data
+      DimensionalityReduction:
+        dim_red_method:
+          PCA:
+            n_components: 2
+        label: motif
+    external_label_metric_summary: ExternalLabelMetricHeatmap
+    cluster_vis: ClusteringVisualization
+    external_labels_summary: # show heatmap of how cluster assignments correspond to external labels
+      ExternalLabelClusterSummary:
+        external_labels: [motif]
+instructions:
+  clustering_instruction:
+    clustering_settings: # what combinations of encoding+dim_reduction+clustering we want to try
+    - dim_reduction: pca
+      encoding: kmer
+      method: kmeans15
+    - dim_reduction: pca
+      encoding: kmer
+      method: kmeans100
+    - dim_reduction: pca
+      encoding: kmer
+      method: kmeans500
+    - dim_reduction: pca
+      encoding: kmer
+      method: kmeans1000
+    - dim_reduction: pca
+      encoding: kmer
+      method: kmeans3500
+    - dim_reduction: pca
+      encoding: tcr_bert
+      method: kmeans15
+    - dim_reduction: pca
+      encoding: tcr_bert
+      method: kmeans500
+    - dim_reduction: pca
+      encoding: tcr_bert
+      method: kmeans100
+    - dim_reduction: pca
+      encoding: tcr_bert
+      method: kmeans1000
+    - dim_reduction: pca
+      encoding: tcr_bert
+      method: kmeans3500
+    - dim_reduction: pca
+      encoding: prot_5
+      method: kmeans100
+    - dim_reduction: pca
+      encoding: prot_5
+      method: kmeans15
+    - dim_reduction: pca
+      encoding: prot_5
+      method: kmeans500
+    - dim_reduction: pca
+      encoding: prot_5
+      method: kmeans1000
+    - dim_reduction: pca
+      encoding: prot_5
+      method: kmeans3500
+    - dim_reduction: pca
+      encoding: emsc
+      method: kmeans15
+    - dim_reduction: pca
+      encoding: emsc
+      method: kmeans100
+    - dim_reduction: pca
+      encoding: emsc
+      method: kmeans500
+    - dim_reduction: pca
+      encoding: emsc
+      method: kmeans1000
+    - dim_reduction: pca
+      encoding: emsc
+      method: kmeans3500
+    - encoding: tcr_dist
+      method: hierarchical_15
+    - encoding: tcr_dist
+      method: hierarchical_500
+    - encoding: tcr_dist
+      method: hierarchical_100
+    - encoding: tcr_dist
+      method: hierarchical_1000
+    - encoding: tcr_dist
+      method: hierarchical_3500
+    dataset: d1
+    labels: # here we list external labels we want to compare against if available
+    - motif
+    metrics: # list metrics we want to use, both internal, and external (if labels are available)
+    - adjusted_mutual_info_score
+    - adjusted_rand_score
+    - silhouette_score
+    - calinski_harabasz_score
+    number_of_processes: 32
+    reports:
+    - dim_reduction_plot
+    - cluster_vis
+    - external_labels_summary
+    - external_label_metric_summary
+    stability_config:
+      split_count: 5 # number of times to repeat clustering for stability estimation
+      random_seed: 12
+    sample_config: # make 5 subsets with 80% of the data each
+      split_count: 5
+      percentage: 0.8
+      random_seed: 12
+    type: Clustering
