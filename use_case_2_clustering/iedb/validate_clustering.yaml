@@ -1,0 +1,36 @@
+definitions:
+  datasets:
+    d1:
+      format: AIRR
+      params:
+        is_repertoire: False
+        organism: human
+        paired: false
+        path: data/split_dataset1/test/subset_d1_test.tsv
+        dataset_file: data/split_dataset1/test/subset_d1_test.yaml
+        result_path: data/split_dataset1/test/
+  reports:
+    external_label_metric_summary: ExternalLabelMetricHeatmap
+    external_labels_summary: # show heatmap of how cluster assignments correspond to external labels
+      ExternalLabelClusterSummary:
+        external_labels: [epitope_name, epitope_source_molecule, epitope_source_organism, mhc_allele_names]
+    design_matrix_exporter:
+      DesignMatrixExporter:
+        file_format: csv
+instructions:
+  validate_clustering:
+    type: ValidateClustering
+    clustering_config_path: 'results_discovery_march12_2026/clustering_instruction/refitted_best_settings/tcr_dist_hierarchical_3500/tcr_dist_hierarchical_3500.zip'
+    dataset: d1
+    labels: [epitope_name, epitope_source_molecule, epitope_source_organism, mhc_allele_names]
+    metrics: # list metrics we want to use, both internal, and external (if labels are available)
+      - adjusted_mutual_info_score
+      - adjusted_rand_score
+      - silhouette_score
+      - calinski_harabasz_score
+    number_of_processes: 32
+    reports:
+      - design_matrix_exporter
+      - external_labels_summary
+      - external_label_metric_summary
+    validation_type: [ method_based, result_based ]
