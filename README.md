@@ -54,6 +54,8 @@ To run the supervised analysis:
 immune-ml 05_supervised_classification_of_gen_data.yaml 05_supervised_cls_gen_data
 ```
 
+Results: https://doi.org/10.5281/zenodo.19564623
+
 ## Use case 2: clustering of IEDB data
 
 This use case clusters IEDB data, but also performs several baseline experiments on simulated data. All the experiments have the same structure.
@@ -76,6 +78,9 @@ Finally, the results are validated on validation set:
 ```
 immune-ml validate_clustering.yaml results_validation_iedb/
 ```
+
+IEDB results: https://doi.org/10.5281/zenodo.19590967
+Results on simulated data: https://doi.org/10.5281/zenodo.19565450
 
 ## Use case 3: exploring confounders in an experimental dataset
 
