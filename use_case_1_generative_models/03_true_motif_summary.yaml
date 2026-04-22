@@ -3,7 +3,7 @@ definitions:
     combined_dataset:
       format: AIRR
       params:
-        dataset_file: /Users/milenpa/PycharmProjects/BMIimmuneML/analyses/gen_model_use_case/additional_exp_analyses/dataset/exported_combined_dataset/combined_gen_models_dataset.yaml
+        dataset_file: dataset/exported_combined_dataset/combined_gen_models_dataset.yaml
         import_empty_aa_sequences: false
         import_empty_nt_sequences: true
         import_illegal_characters: true
@@ -14,9 +14,9 @@ definitions:
         is_repertoire: false
         label_columns: null
         paired: false
-        path: /Users/milenpa/PycharmProjects/BMIimmuneML/analyses/gen_model_use_case/additional_exp_analyses/dataset/exported_combined_dataset/combined_gen_models_dataset.tsv
+        path: dataset/exported_combined_dataset/combined_gen_models_dataset.tsv
         region_type: IMGT_CDR3
-        result_path: /Users/milenpa/PycharmProjects/BMIimmuneML/analyses/gen_model_use_case/additional_exp_analyses/dataset/exported_combined_dataset
+        result_path: dataset/exported_combined_dataset
         separator: "\t"
   encodings: {}
   example_weightings: {}
