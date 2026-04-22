@@ -13,7 +13,7 @@ definitions:
         is_repertoire: false
         label_columns: null
         paired: false
-        path: 00_simulation/full_simulated_dataset.tsv
+        path: 00_simulation_with_train_test_split/full_simulated_dataset.tsv
         region_type: IMGT_CDR3
         result_path: 01_train/datasets/dataset
         separator: "\t"
@@ -76,8 +76,8 @@ instructions:
     number_of_processes: 1
     reports: []
     split_config:
-      test_metadata_path: 00_simulation/test_ids.csv
-      train_metadata_path: 00_simulation/train_ids.csv
+      test_metadata_path: 00_simulation_with_train_test_split/test_ids.csv
+      train_metadata_path: 00_simulation_with_train_test_split/train_ids.csv
     split_strategy: MANUAL
     training_percentage: 0.7
     type: TrainGenModel

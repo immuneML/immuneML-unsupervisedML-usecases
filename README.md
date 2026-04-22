@@ -24,6 +24,16 @@ To replicate, run:
 immune-ml 00_simulation.yaml 00_simulation/
 ```
 
+To create train and test dataset for generative models where the percentage of sequences with each signal
+is fixed, run:
+
+```
+python make_fixed_train_test.py
+```
+
+This is an optional step, as the train and test dataset will look very similar if regular immuneML "RANDOM"
+splitting strategy was used. This step ensures that the percentages are exactly the same.
+
 Then run generative models:
 
 ```
