@@ -177,6 +177,18 @@ definitions:
 instructions:
   initial_exp_analysis:
     analyses:
+      raw_data_analysis:
+        dataset: d1
+        reports:
+          - label_dist
+          - label_overlap_batch_diagnosis1
+          - label_overlap_batch_diagnosis2
+          - label_overlap_sex_diagnosis1
+          - label_overlap_sex_diagnosis2
+          - repertoire_clonotype_summary
+          - shannon_diversity
+          - seq_length_distribution
+          - gene_dist
       standardized_encoded_data_analysis4:
         dataset: d1
         encoding: kmer3_pos_standardized
